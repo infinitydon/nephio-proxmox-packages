@@ -1,0 +1,23 @@
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
+metadata:
+  name: cni-plugins-install
+spec:
+  upstream:
+    repo: oai-packages
+    package: cni-plugins-install
+    revision: main
+  targets:
+  - repositories:
+    - name: controlplane
+      packageNames:
+        - cni-plugins    
+    - name: userplane
+      packageNames:
+        - cni-plugins    
+    - name: ran
+      packageNames:
+        - cni-plugins    
+    template:
+      annotations:
+        approval.nephio.org/policy: initial
