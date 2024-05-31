@@ -1,5 +1,5 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariantSet
+kind: PackageVariant
 metadata:
   name: core-oai-udm
 spec:
