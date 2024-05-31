@@ -10,8 +10,14 @@ spec:
   targets:
   - repositories:
     - name: controlplane
+      packageNames:
+        - multus    
     - name: userplane
+      packageNames:
+        - multus    
     - name: ran
+      packageNames:
+        - multus    
     template:
       annotations:
         approval.nephio.org/policy: initial
