@@ -1,5 +1,5 @@
-apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariant
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
 metadata:
   name: workload-crds
 spec:
