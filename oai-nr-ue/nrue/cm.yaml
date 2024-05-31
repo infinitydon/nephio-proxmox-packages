@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oainrue
+  namespace: oairfsimgnb
+data:
+  dnn: "internet"
+  fullImsi: "001010000000100"
+  fullKey: "fec86ba6eb707ed08905757b1bb44b8f"
+  nssaiSd: "16777215"
+  nssaiSst: "1"
+  opc: "C42449363BBAD02B66D16BC975D77CC1"
+  rfSimulator: "oai-gnb"
+  timeZone: "Europe/Paris"
+  useAdditionalOptions: "--sa -E --rfsim -r 106 --numerology 1 -C 3319680000 --nokrnmod --log_config.global_log_options level,nocolor,time"
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: oai-nr-ue-configmap-1
+# data:
+#   nrue.conf: |
+#       uicc0 = {
+#       imsi = "001010000000100";
+#       key = "fec86ba6eb707ed08905757b1bb44b8f";
+#       opc= "C42449363BBAD02B66D16BC975D77CC1";
+#       dnn= "oai";
+#       nssai_sst="1";
+#       nssai_sd="16777215";
+#       }
+---
+# Source: oai-nr-ue/templates/deployment.yaml

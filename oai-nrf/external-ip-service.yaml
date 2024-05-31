@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nrf-external-ip
+  namespace: nrf-example
+spec:
+  externalIPs:
+  - NRF_LB_IP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    workload.nephio.org/oai: nrf
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: edge-oairfsimgnb
+spec:
+  upstream:
+    repo: oai-packages
+    package: oai-rfsim-gnb
+    revision: main
+  downstream:
+    repo: ran
+    package: oai-rfsim-gnb
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: edge

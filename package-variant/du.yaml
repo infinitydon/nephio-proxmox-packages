@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: edge-oai-du
+spec:
+  upstream:
+    repo: oai-packages
+    package: oai-du
+    revision: main
+  downstream:
+    repo: ran
+    package: oai-du
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: edge

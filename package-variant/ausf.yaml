@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-oai-ausf
+spec:
+  upstream:
+    repo: oai-packages
+    package: oai-ausf
+    revision: main
+  downstream:
+    repo: controlplane
+    package: oai-ausf
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: core

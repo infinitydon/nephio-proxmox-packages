@@ -1,0 +1,24 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata:
+  name: smf-example
+  namespace: smf-example
+spec:
+  provider: smf.openairinterface.org
+  capacity:
+    maxNFConnections: 5
+    maxSessions: 500
+  interfaces:
+  - name: n4
+    ipv4:
+      address: 192.168.31.2/24
+      gateway: 192.168.31.1
+    vlanID: 31
+  networkInstances:
+  - name: vpc-internal
+    interfaces:
+    - n4
+  parametersRefs:
+  - name: oai-smf-config
+    apiVersion: workload.nephio.org/v1alpha1
+    kind: NFConfig

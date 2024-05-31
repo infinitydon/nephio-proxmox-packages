@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-oai-database
+spec:
+  upstream:
+    repo: oai-packages
+    package: database
+    revision: main
+  downstream:
+    repo: controlplane
+    package: database
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: core

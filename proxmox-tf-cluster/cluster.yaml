@@ -1,0 +1,64 @@
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: cluster-example
+  namespace: flux-system
+spec:
+  approvePlan: auto
+  interval: 1m
+  destroyResourcesOnDeletion: true
+  writeOutputsToSecret:
+    name: cluster-example-output
+  path: ./proxmox-5g-vms-tf
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  vars:
+  - name: proxmox_api_url
+    value : "https://192.168.100.1:8006"
+  - name: proxmox_node
+    value: "pve"
+  - name: storage_pool
+    value: "local-lvm"
+  - name: ssh_public_key
+    value: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+nKsMc7J5VlIsd+3ilcHr/GUlm0G5toypRaOGnFaIUtpdRqg7JQDtURdCdoqXkiuLA0mqkKkIIemjUPbTv6rBQIDNhxvhh0aPkUgIPzR3hW9+BF2/4Yf8297wH/GrDSiAiAzEtXMgsfPMFtNskngVkWNKq9zd0ZlDrCamEiKydlupy/KN28CwI8Ce3n2DGsFTsr1oJOdmbyFlAgKCsV5xAotXHY9Jzt4s81tVnpq3fhDG7SJxhZfu1lmUgmEG+Ucb00fLxT8Y5FxmDCld0FSZSfHeDl4jZEHuAQNAOgMTwX8zFWGMBofL54I/I+qU7qFOar/JgZZUIF6/i61dK0G9"
+  - name: snippets_storage_pool
+    value: "ebenezer-stor1"  
+  - name: cp_virtual_machines
+    value:
+      cp-vm1: 
+        vm_name: "CP_VM_NODE_NAME"
+        vm_identifier: "CP_VM_ID"
+        tags: ["rancher", "k8s-cp"]
+        node_memory: 8192
+        node_cpu_cores: 8
+        os_template_id: "9001"
+        node_disk_size: "50"
+        config_network_bridge: "vmbr0"
+        nic_net0_mac_address: "CP_VM_MAC_ADDR"
+  - name: up_virtual_machines
+    value:
+      up-vm1:
+        vm_name: "UP_VM_NODE_NAME"
+        vm_identifier: "UP_VM_ID"
+        tags: ["rancher", "k8s-up"]
+        node_memory: 16384
+        node_cpu_cores: 8
+        os_template_id: "9001"
+        node_disk_size: "50"
+        config_network_bridge: "vmbr0"
+        nic_net0_mac_address: "UP_VM_MAC_ADDR"
+  - name: github_org
+    value: "infinitydon"
+  - name: phone_home_url
+    value: "http://192.168.100.62:8080/phone-home"
+  - name: check_status_url
+    value: "http://192.168.100.62:8080/instance-status"
+  varsFrom:
+  - kind: Secret
+    name: proxmox-creds
+  - kind: Secret
+    name: github-pat
+  - kind: Secret
+    name: proxmox-vm-ssh-key        

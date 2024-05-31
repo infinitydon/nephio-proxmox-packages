@@ -1,0 +1,24 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-oai-amf
+spec:
+  upstream:
+    repo: oai-packages
+    package: oai-amf
+    revision: main
+  downstream:
+    repo: controlplane
+    package: oai-amf
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: core
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: NetworkAttachmentDefinition
+      configMap:
+        by-value: MCVLAN_MASTER_INTERFACE
+        put-value: "ens19"  

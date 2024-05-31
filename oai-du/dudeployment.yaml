@@ -1,0 +1,17 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: 
+  name: du-example
+  namespace: example
+spec:
+  provider: du.openairinterface.org
+  interfaces:
+  - name: f1
+    ipv4:
+      address: 192.168.32.4/24
+      gateway: 192.168.32.1
+    vlanID: 32  
+  parametersRefs:
+    - apiVersion: workload.nephio.org/v1alpha1
+      kind: NFConfig
+      name: du-nf-config

@@ -1,0 +1,17 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariantSet
+metadata:
+  name: core-oai-smf
+spec:
+  upstream:
+    repo: oai-packages
+    package: oai-smf
+    revision: main
+  downstream:
+    repo: controlplane
+    package: oai-smf
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: core
+

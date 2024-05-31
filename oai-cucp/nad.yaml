@@ -1,0 +1,23 @@
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: cucp-core-n2
+  namespace: example
+spec:
+  config: '{"cniVersion":"0.3.1","name": "cucp-core-n2","plugins":[{"type":"macvlan","capabilities":{"ips":true},"master":"MCVLAN_MASTER_INTERFACE","mode":"bridge","ipam":{"type":"static"}}]}'
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: cucp-core-f1c
+  namespace: example
+spec:
+  config: '{"cniVersion":"0.3.1","name": "cucp-core-f1c","plugins":[{"type":"macvlan","capabilities":{"ips":true},"master":"MCVLAN_MASTER_INTERFACE","mode":"bridge","ipam":{"type":"static"}}]}'
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: cucp-core-e1
+  namespace: example
+spec:
+  config: '{"cniVersion":"0.3.1","name": "cucp-core-e1","plugins":[{"type":"macvlan","capabilities":{"ips":true},"master":"MCVLAN_MASTER_INTERFACE","mode":"bridge","ipam":{"type":"static"}}]}'

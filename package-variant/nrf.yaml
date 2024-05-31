@@ -1,0 +1,24 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-oai-nrf
+spec:
+  upstream:
+    repo: oai-packages
+    package: oai-nrf
+    revision: main
+  downstream:
+    repo: controlplane
+    package: oai-nrf
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: core
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: Service
+      configMap:
+        by-value: NRF_LB_IP
+        put-value: "192.168.100.246"
