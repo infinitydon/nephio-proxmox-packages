@@ -1,3 +1,2 @@
 package-context.yaml
-cm-namespace.yaml
-workload-cluster.yaml
+apply-replacements-owner.yaml
