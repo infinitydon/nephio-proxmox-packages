@@ -1,44 +1,23 @@
-apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariant
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
 metadata:
-  name: controlplane-multus
+  name: multus
 spec:
   upstream:
     repo: oai-packages
     package: multus
     revision: main
-  downstream:
-    repo: controlplane
-    package: multus
-  annotations:
-    approval.nephio.org/policy: initial
----
-apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariant
-metadata:
-  name: userplane-multus
-spec:
-  upstream:
-    repo: oai-packages
-    package: multus
-    revision: main
-  downstream:
-    repo: userplane
-    package: multus
-  annotations:
-    approval.nephio.org/policy: initial
----
-apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariant
-metadata:
-  name: ran-multus
-spec:
-  upstream:
-    repo: oai-packages
-    package: multus
-    revision: main
-  downstream:
-    repo: ran
-    package: multus
-  annotations:
-    approval.nephio.org/policy: initial       
+  targets:
+  - repositories:
+    - name: controlplane
+      packageNames:
+        - multus    
+    - name: userplane
+      packageNames:
+        - multus    
+    - name: ran
+      packageNames:
+        - multus    
+    template:
+      annotations:
+        approval.nephio.org/policy: initial
