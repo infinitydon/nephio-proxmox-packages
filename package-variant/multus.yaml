@@ -1,0 +1,17 @@
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
+metadata:
+  name: multus
+spec:
+  upstream:
+    repo: oai-packages
+    package: multus
+    revision: main
+  targets:
+  - repositories:
+    - name: controlplane
+    - name: userplane
+    - name: ran
+    template:
+      annotations:
+        approval.nephio.org/policy: initial
