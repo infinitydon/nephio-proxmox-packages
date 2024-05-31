@@ -1,16 +1,23 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: workload-crds-controlplane
+  name: workload-crds
 spec:
   upstream:
     repo: oai-packages
     package: workload-crds
     revision: main
-  downstream:
-    repo: controlplane
-    package: workload-crds
-  annotations:
-    approval.nephio.org/policy: initial
-  injectors:
-  - name: core
+  targets:
+  - repositories:
+    - name: controlplane
+      packageNames:
+        - workload-crds
+    - name: userplane
+      packageNames:
+        - workload-crds
+    - name: ran
+      packageNames:
+        - workload-crds
+    template:
+      annotations:
+        approval.nephio.org/policy: initial

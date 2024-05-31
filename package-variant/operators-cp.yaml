@@ -1,7 +1,7 @@
-apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariant
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
 metadata:
-  name: oai-cp-operators
+  name: oai-operators-crds
 spec:
   upstream:
     repo: oai-packages
