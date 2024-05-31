@@ -14,11 +14,3 @@ spec:
     approval.nephio.org/policy: initial
   injectors:
   - name: core
-  pipeline:
-    mutators:
-    - image: gcr.io/kpt-fn/search-replace:v0.2.0
-      selectors:
-      - kind: Service
-      configMap:
-        by-value: NRF_LB_IP
-        put-value: "192.168.100.246"

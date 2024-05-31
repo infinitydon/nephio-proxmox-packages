@@ -5,7 +5,7 @@ metadata:
   namespace: nrf-example
 spec:
   externalIPs:
-  - NRF_LB_IP
+  - 192.168.100.246
   ports:
   - port: 80
     protocol: TCP

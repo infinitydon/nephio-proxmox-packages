@@ -14,11 +14,3 @@ spec:
     approval.nephio.org/policy: initial
   injectors:
   - name: core
-  pipeline:
-    mutators:
-    - image: gcr.io/kpt-fn/search-replace:v0.2.0
-      selectors:
-      - kind: NetworkAttachmentDefinition
-      configMap:
-        by-value: MCVLAN_MASTER_INTERFACE
-        put-value: "ens19"  
