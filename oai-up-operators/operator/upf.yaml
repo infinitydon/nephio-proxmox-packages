@@ -127,22 +127,21 @@ data:
       - name: 'sbi'
         port: 80
         protocol: TCP
-    httpVersion: 1
     nfInterfaces:
-      sbi: 'n6'
+      sbi: 'eth0'
       n3: 'n3'
       n4: 'n4'
-      n6: 'eth0'
+      n6: 'n6'
       n9: 'eth0'
     compute:
       req:
-        cpu: '1'
+        cpu: '100m'
         memory: '512Mi'
       limits:
-        cpu: '1'
+        cpu: '100m'
         memory: '512Mi'
     logLevel: debug
-    image: 'docker.io/oaisoftwarealliance/oai-upf:v2.0.1'
+    image: 'docker.io/oaisoftwarealliance/oai-upf:v2.0.0'
     fqdn:
       nrf: '192.168.100.246'
       smf: '127.0.0.1'
@@ -161,7 +160,7 @@ data:
     # If you enable registration, the other NFs will use the NRF discovery mechanism
     register_nf:
       upf: 'yes'
-    http_version: {{ conf['httpVersion'] }}
+    http_version: 2
     ## general single_nssai configuration
     ## Defines YAML anchors, which are reused in the config file
     snssais:
@@ -236,7 +235,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-upf-controller
+  name: oai-upf-operator
   namespace: oai-cn-operators
   labels:
     app.kubernetes.io/name: oai-upf
@@ -255,9 +254,11 @@ spec:
       securityContext:
         runAsGroup: 0
         runAsUser: 0
+      imagePullSecrets:
+      - name: regcred
       containers:
-      - name: upf-controller
-        image: "docker.io/arorasagar/oai-upf-controller:v2.0.2"
+      - name: upf-operator
+        image: "docker.io/arorasagar/oai-upf-controller:v2.0.1"
         imagePullPolicy: Always
         env:
           - name: 'NF_TYPE'
@@ -274,8 +275,6 @@ spec:
             value: 'no'
           - name: 'KUBERNETES_BASE_URL'
             value: 'https://kubernetes.default.svc'
-          - name: 'KUBERNETES_TYPE'
-            value: 'openshift'
         volumeMounts:
           - mountPath: /tmp/op
             name: opconf
@@ -305,4 +304,3 @@ spec:
       restartPolicy: Always
       serviceAccountName: oai-upf-operator
       terminationGracePeriodSeconds: 5
-      
