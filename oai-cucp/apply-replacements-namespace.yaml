@@ -11,6 +11,10 @@ replacements:
     fieldPath: data.namespace
   targets:
   - select:
+      kind: Namespace
+    fieldPaths:
+    - metadata.name  
+  - select:
       kind: NFConfig
     fieldPaths:
     - metadata.annotations.[specializer.nephio.org/namespace]
