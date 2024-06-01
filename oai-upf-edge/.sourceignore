@@ -3,3 +3,4 @@ apply-replacements-namespace.yaml
 apply-replacements-owner.yaml
 cm-namespace.yaml
 workload-cluster.yaml
+capacity.yaml
