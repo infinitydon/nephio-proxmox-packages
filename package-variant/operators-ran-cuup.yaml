@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: oai-ranu-operator
+spec:
+  upstream:
+    repo: oai-packages
+    package: oai-ranu-operators
+    revision: main
+  downstream:
+    repo: userplane
+    package: oai-ranu-operators
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: edge
