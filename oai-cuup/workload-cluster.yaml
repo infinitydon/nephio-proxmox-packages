@@ -6,4 +6,4 @@ metadata:
     config.kubernetes.io/local-config: "true"
     kpt.dev/config-injection: required
 spec:
-  clusterName: example
+  clusterName: edge
