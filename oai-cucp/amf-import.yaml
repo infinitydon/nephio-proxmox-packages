@@ -2,7 +2,7 @@ apiVersion: ref.nephio.org/v1alpha1
 kind: Config
 metadata:
   name: cucp-ran-amf-core
-  namespace: oai-core
+  namespace: oai-ran
   annotations:
     specializer.nephio.org/owner: req.nephio.org/v1alpha1.Dependency.amf
 spec:
@@ -11,7 +11,7 @@ spec:
     kind: NFDeployment
     metadata:
       name: amf-core
-      namespace: oai-core
+      namespace: oai-ran
     spec:
       provider: amf.openairinterface.org
       capacity:
