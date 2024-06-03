@@ -8,7 +8,7 @@ spec:
     package: oai-cuup
     revision: main
   downstream:
-    repo: userplane
+    repo: ran
     package: oai-cuup
   annotations:
     approval.nephio.org/policy: initial
