@@ -34,4 +34,33 @@ spec:
   parametersRefs:
   - name: oai-cucp-config
     apiVersion: workload.nephio.org/v1alpha1
-    kind: NFConfig    
+    kind: NFConfig
+  - name: cucp-ran-amf-core
+    apiVersion: ref.nephio.org/v1alpha1
+    kind: Config
+    metadata:
+      name: cucp-ran-amf-core
+      namespace: oai-ran
+      annotations:
+        specializer.nephio.org/owner: req.nephio.org/v1alpha1.Dependency.amf
+    spec:
+      config:
+        apiVersion: workload.nephio.org/v1alpha1
+        kind: NFDeployment
+        metadata:
+          name: amf-core
+          namespace: oai-ran
+        spec:
+          provider: amf.openairinterface.org
+          capacity:
+            maxSubscribers: 1000
+          interfaces:
+          - name: n2
+            ipv4:
+              address: 192.168.30.2/24
+              gateway: 192.168.30.1
+            vlanID: 30
+          networkInstances:
+          - name: vpc-ran
+            interfaces:
+            - n2  
