@@ -26,3 +26,10 @@ spec:
           nssai:
           - sd: ffffff
             sst: 1
+    - apiVersion: workload.nephio.org/v1alpha1
+      kind: OAIConfig
+      metadata:
+        name: oai-nf-config
+        namespace: oai-ran
+      spec:
+        image: "docker.io/oaisoftwarealliance/oai-nr-cuup:2023.w19"            
