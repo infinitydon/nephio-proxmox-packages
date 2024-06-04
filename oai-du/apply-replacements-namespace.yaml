@@ -1,7 +1,7 @@
 apiVersion: fn.kpt.dev/v1alpha1
 kind: ApplyReplacements
 metadata:
-  name: replace-namespace
+  name: propagate-namespace
   annotations:
     config.kubernetes.io/local-config: "true"
 replacements:
@@ -13,19 +13,13 @@ replacements:
   - select:
       kind: Namespace
     fieldPaths:
-    - metadata.name   
-  - select:
-      kind: Config
-    fieldPaths:
-    - metadata.namespace
+    - metadata.name  
   - select:
       kind: NFConfig
     fieldPaths:
-    - metadata.namespace
-    - spec.configRefs.0.metadata.namespace
-    - spec.configRefs.1.metadata.namespace
-    - spec.configRefs.2.metadata.namespace
+    - metadata.annotations.[specializer.nephio.org/namespace]
   - select:
-      kind: NFDeployment
+      kind: NetworkAttachmentDefinition
     fieldPaths:
-    - spec.configRefs.[kind=Config].namespace
+    - metadata.namespace
+    - metadata.annotations.[specializer.nephio.org/namespace]    
