@@ -1,7 +1,7 @@
 apiVersion: workload.nephio.org/v1alpha1
 kind: NFConfig
 metadata: # kpt-merge: example/cucp-nf-config
-  name: cucp-nf-config
+  name: oai-cucp-config
   namespace: oai-ran
   annotations:
     internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFConfig|example|cucp-nf-config'
