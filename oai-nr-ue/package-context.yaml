@@ -5,5 +5,4 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 data:
-  name: oainrue
-  namespace: oai-ran
+  name: oai-ran-ue
