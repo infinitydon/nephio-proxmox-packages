@@ -7,8 +7,8 @@ metadata:
 replacements:
 - source:
     kind: ConfigMap
-    name: kptfile.kpt.dev
-    fieldPath: data.name
+    name: namespace
+    fieldPath: data.namespace
   targets:
   - select:
       kind: Namespace
