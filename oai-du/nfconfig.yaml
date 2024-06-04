@@ -1,7 +1,7 @@
 apiVersion: workload.nephio.org/v1alpha1
 kind: NFConfig
 metadata:
-  name: du-nf-config
+  name: oai-du-config
   namespace: example
 spec:
   configRefs:

@@ -14,7 +14,7 @@ spec:
   parametersRefs:
   - apiVersion: workload.nephio.org/v1alpha1
     kind: NFConfig
-    name: du-nf-config
+    name: oai-du-config
   - apiVersion: ref.nephio.org/v1alpha1
     kind: Config
     name: oai-cucp-config
