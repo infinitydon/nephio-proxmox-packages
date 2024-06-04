@@ -5,5 +5,5 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 data:
-  namespace: oai-ran
+  namespace: oai-ran-du
   sriovnamespace: openshift-sriov-network-operator

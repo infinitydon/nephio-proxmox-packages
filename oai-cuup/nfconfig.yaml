@@ -30,6 +30,6 @@ spec:
       kind: OAIConfig
       metadata:
         name: oai-nf-config
-        namespace: oai-ran
+        namespace: oai-ran-cuup
       spec:
         image: "docker.io/oaisoftwarealliance/oai-nr-cuup:2023.w19"            

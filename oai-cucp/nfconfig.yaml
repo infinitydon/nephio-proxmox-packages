@@ -2,7 +2,7 @@ apiVersion: workload.nephio.org/v1alpha1
 kind: NFConfig
 metadata: # kpt-merge: example/cucp-nf-config
   name: oai-cucp-config
-  namespace: oai-ran
+  namespace: oai-ran-cucp
   annotations:
     internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFConfig|example|cucp-nf-config'
 spec:
@@ -11,7 +11,7 @@ spec:
     kind: RANConfig
     metadata:
       name: ranconfig
-      namespace: oai-ran
+      namespace: oai-ran-cucp
     spec:
       cellIdentity: 12345678L
       physicalCellID: 0
@@ -26,7 +26,7 @@ spec:
     kind: PLMN
     metadata:
       name: plmn
-      namespace: oai-ran
+      namespace: oai-ran-cucp
     spec:
       PLMNInfo:
       - plmnID:
@@ -40,6 +40,6 @@ spec:
     kind: OAIConfig
     metadata:
       name: oai-nf-config
-      namespace: oai-ran
+      namespace: oai-ran-cucp
     spec:
       image: "docker.io/oaisoftwarealliance/oai-gnb:2023.w19"

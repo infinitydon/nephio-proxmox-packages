@@ -2,7 +2,7 @@ apiVersion: ref.nephio.org/v1alpha1
 kind: Config
 metadata:
   name: oai-cucp-config
-  namespace: oai-ran
+  namespace: oai-ran-cuup
   annotations:
     specializer.nephio.org/owner: req.nephio.org/v1alpha1.Dependency.cucp
 spec:
@@ -11,7 +11,7 @@ spec:
     kind: NFDeployment
     metadata:
       name: cucp-ran
-      namespace: oai-ran
+      namespace: oai-ran-cucp
     spec:
       interfaces:
       - name: n2
