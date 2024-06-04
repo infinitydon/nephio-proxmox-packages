@@ -11,7 +11,7 @@ spec:
     kind: NFDeployment
     metadata:
       name: cucp-ran
-      namespace: oai-ran-cucp
+      namespace: oai-ran
     spec:
       interfaces:
       - name: n2
