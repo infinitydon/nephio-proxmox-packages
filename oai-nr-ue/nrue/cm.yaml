@@ -5,7 +5,7 @@ metadata:
   namespace: oai-ue
 data:
   dnn: "internet"
-  fullImsi: "001010000000100"
+  fullImsi: "208990100001128"
   fullKey: "fec86ba6eb707ed08905757b1bb44b8f"
   nssaiSd: "16777215"
   nssaiSst: "1"
