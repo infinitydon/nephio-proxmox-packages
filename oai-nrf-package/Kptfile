@@ -1,0 +1,15 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: oai-nrf
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: nrf blueprint package
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+      configPath: apply-replacements-owner.yaml
+    - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+      configPath: cm-namespace.yaml
+    - image: docker.io/nephio/interface-fn:v2.0.0     

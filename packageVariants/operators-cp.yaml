@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: oai-operators-cp
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: oai-cp-operators-package
+    revision: r3
+  downstream:
+    repo: control-plane
+    package: oai-cp-operators
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: core

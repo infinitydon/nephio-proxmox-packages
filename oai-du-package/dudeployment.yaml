@@ -1,0 +1,20 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: 
+  name: du-example
+  namespace: example
+spec:
+  provider: du.openairinterface.org
+  interfaces:
+  - name: f1
+    ipv4:
+      address: DU_F1U_IP
+      gateway: DU_F1U_GW
+    vlanID: 32  
+  parametersRefs:
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: NFConfig
+    name: oai-du-config
+  - apiVersion: ref.nephio.org/v1alpha1
+    kind: Config
+    name: oai-cucp-config

@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: edge-oai-cuup
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: oai-cuup-package
+    revision: r3
+  downstream:
+    repo: ran
+    package: oai-cuup
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: edge

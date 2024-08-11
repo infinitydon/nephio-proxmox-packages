@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nrf-internal-lb
+  namespace: nrf-example
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    external-dns.alpha.kubernetes.io/hostname: "nrf.oai.internal."
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    workload.nephio.org/oai: nrf
+  type: LoadBalancer

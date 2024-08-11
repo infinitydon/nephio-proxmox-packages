@@ -1,0 +1,23 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: pkg-cuup
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: example cuup blueprint package
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+      configPath: apply-replacements-owner.yaml
+    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+      configPath: apply-replacements-namespace.yaml
+    - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+      configPath: cm-namespace.yaml
+    - image: ghcr.io/infinitydon/nf-deploy-api-config-replacer:v0.1
+      selectors:
+        - kind: NFDeployment
+        - kind: Config    
+    - image: ghcr.io/infinitydon/nad-api-config-replacer:v0.1
+      selectors:
+        - kind: NetworkAttachmentDefinition

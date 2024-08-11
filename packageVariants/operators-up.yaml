@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: oai-up-operators
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: oai-up-operators-package
+    revision: r3
+  downstream:
+    repo: user-plane
+    package: oai-up-operators
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: edge

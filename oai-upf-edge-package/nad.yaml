@@ -1,0 +1,76 @@
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: upf-edge-n3
+  namespace: upf-example
+spec:
+  config: |
+    {
+      "cniVersion": "0.3.1",
+      "name": "upf-core-n3",
+      "plugins": [
+        {
+          "type": "ipvlan",
+          "capabilities": {
+            "ips": true
+          },
+          "master": "UPF_N3_MULTUSPARENTINTERFACE",
+          "mode": "l2",
+          "ipam": {
+            "type": "static",
+            "routes": [{ "dst": "CUUP_N3_NETWORKADDRESS", "gw": "UPF_N3_GW" }]
+          }
+        }
+      ]
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: upf-edge-n4
+  namespace: upf-example
+spec:
+  config: |
+    {
+      "cniVersion": "0.3.1",
+      "name": "upf-core-n4",
+      "plugins": [
+        {
+          "type": "ipvlan",
+          "capabilities": {
+            "ips": true
+          },
+          "master": "UPF_N4_MULTUSPARENTINTERFACE",
+          "mode": "l2",
+          "ipam": {
+            "type": "static",
+            "routes": [{ "dst": "SMF_N4_NETWORKADDRESS", "gw": "UPF_N4_GW" }]
+          }
+        }
+      ]
+    }
+---
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: upf-edge-n6
+  namespace: upf-example
+spec:
+  config: |
+    {
+      "cniVersion": "0.3.1",
+      "name": "upf-core-n6",
+      "plugins": [
+        {
+          "type": "ipvlan",
+          "capabilities": {
+            "ips": true
+          },
+          "master": "UPF_N6_MULTUSPARENTINTERFACE",
+          "mode": "l2",
+          "ipam": {
+            "type": "static"
+          }
+        }
+      ]
+    }

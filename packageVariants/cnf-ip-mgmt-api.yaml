@@ -1,0 +1,14 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: cnf-ip-mgmt-api
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: configuration-ip-api-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: configuration-ip-api
+  annotations:
+    approval.nephio.org/policy: initial

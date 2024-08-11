@@ -1,0 +1,22 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: day0-infra
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: infra-day0-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: infra-day0-package
+  annotations:
+    approval.nephio.org/policy: initial    
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configMap:
+        github-org: infinitydon
+        workload-cluster-region: us-west-2
+        multus-lambda-s3-bucket: multus-lambda-us-west-2-oregon-2024
+        github-pat-secret-name: github-pat-credentials

@@ -1,0 +1,23 @@
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
+metadata:
+  name: workload-crds
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: workload-crds-package
+    revision: r3
+  targets:
+  - repositories:
+    - name: control-plane
+      packageNames:
+        - workload-crds
+    - name: user-plane
+      packageNames:
+        - workload-crds
+    - name: ran
+      packageNames:
+        - workload-crds
+    template:
+      annotations:
+        approval.nephio.org/policy: initial

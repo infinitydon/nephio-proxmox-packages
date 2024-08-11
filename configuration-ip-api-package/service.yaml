@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: configmap-api-service
+  namespace: porch-system
+spec:
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: configmap-api
+  type: ClusterIP

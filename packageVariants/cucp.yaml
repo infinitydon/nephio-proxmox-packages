@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: regional-oai-cucp
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: oai-cucp-package
+    revision: r3
+  downstream:
+    repo: ran
+    package: oai-cucp
+  injectors:
+  - name: regional
+  annotations:
+    approval.nephio.org/policy: initial

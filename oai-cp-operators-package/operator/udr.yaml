@@ -1,0 +1,252 @@
+################################################################################
+# Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The OpenAirInterface Software Alliance licenses this file to You under
+# the terms found in the LICENSE file in the root of this source tree.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#-------------------------------------------------------------------------------
+# For more information about the OpenAirInterface (OAI) Software Alliance:
+#      contact@openairinterface.org
+##################################################################################
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: oai-cn-operators
+  name: oai-udr-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: oai-udr-operator-cluster-role
+rules:
+  - apiGroups: [""]
+    resources: [events]
+    verbs: [create]
+  - apiGroups: ["security.openshift.io"]
+    resources: ["securitycontextconstraints"]
+    resourceNames: ["anyuid"]
+    verbs: [use]
+  - apiGroups: [apiextensions.k8s.io]
+    resources: [customresourcedefinitions]
+    verbs: [get, list, watch, create, update, patch]
+  - apiGroups: ["ref.nephio.org"]
+    resources: [configs,config]
+    verbs: [list, watch, update, patch, get]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: [roles,rolebindings]
+    verbs: [get, create, delete, patch]
+  - apiGroups: ["workload.nephio.org"]
+    resources: [nfdeployments,nfdeployments/status,nfconfigs,nfdeployments/finalizers]
+    verbs: [get, list, watch, update, patch]
+  - apiGroups: [""]
+    resources: [pods, serviceaccounts, configmaps, services, persistentvolumeclaims,services/finalizers,serviceaccounts/finalizers]
+    verbs:  [get, list, watch, create, update, patch, delete]
+  - apiGroups: ["apps","extensions"]
+    resources: [deployments,deployments/status,deployments/finalizers]
+    verbs:  [get, list, watch, create, update, patch, delete]
+  - apiGroups: ["k8s.cni.cncf.io"]
+    resources: [network-attachment-definitions]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: [""]
+    resources: [namespaces]
+    verbs: [list, watch]
+  - apiGroups: [admissionregistration.k8s.io/v1, admissionregistration.k8s.io/v1beta1]
+    resources: [validatingwebhookconfigurations, mutatingwebhookconfigurations]
+    verbs: [create, patch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: oai-udr-operator-rolebinding-cluster
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: oai-udr-operator-cluster-role
+subjects:
+  - kind: ServiceAccount
+    name: oai-udr-operator
+    namespace: oai-cn-operators
+## In case you want to restrict to a namespace uncomment this role and remove the rights from cluster role
+#---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   namespace: oai-cn-operators
+#   name: oai-udr-operator-role
+# rules:
+#   # Framework: posting the events about the handlers progress/errors.
+#   - apiGroups: [""]
+#     resources: [events]
+#     verbs: [create]
+#   - apiGroups: ["workload.nephio.org"]
+#     resources: [udrdeployments,udrdeployments/status]
+#     verbs: [list, watch, update, patch]
+#   - apiGroups: [""]
+#     resources: [pods, serviceaccounts, configmaps, services, persistentvolumeclaims]
+#     verbs:  [get, list, watch, create, update, patch, delete]
+#   - apiGroups: ["apps","extensions"]
+#     resources: [deployments,deployments/status]
+#     verbs:  [get, list, watch, create, update, patch, delete]
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+# metadata:
+#   namespace: oai-cn-operators
+#   name: oai-udr-operator-rolebinding-namespaced
+# roleRef:
+#   apiGroup: rbac.authorization.k8s.io
+#   kind: Role
+#   name: oai-udr-operator-role
+# subjects:
+#   - kind: ServiceAccount
+#     name: oai-udr-operator
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oai-udr-op-conf
+  namespace: oai-cn-operators
+data:
+  udr.yaml: |
+    ports:
+      - name: 'http'
+        port: 80
+        protocol: TCP
+    nfInterfaces:
+      sbi: 'eth0'
+    compute:
+      req:
+        cpu: '100m'
+        memory: '512Mi'
+      limits:
+        cpu: '100m'
+        memory: '512Mi'
+    logLevel: info
+    image: 'docker.io/oaisoftwarealliance/oai-udr:v2.0.1'
+    fqdn:
+      nrf: oai-nrf
+    database:
+      host: mysql
+      type: mysql
+      user: test
+      pass: test
+      connection_timeout: 300 # seconds
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oai-udr-nf-conf
+  namespace: oai-cn-operators
+data:
+  udr.yaml: |
+    # Log level
+    log_level:
+      udr: {{ conf['logLevel'] }}
+    # If you enable registration, the NF will use the NRF discovery mechanism
+    register_nf:
+      udr: 'yes'
+    http_version: 2  # allowed value 1 and 2, make sure all NFs use the same HTTP version
+    ############## SBI Interfaces
+    ### Each NF takes its local SBI interfaces and remote interfaces from here, unless it gets them using NRF discovery mechanisms
+    nfs:
+      udr:
+        host: {{ conf['fqdn']['udr'] }}
+        sbi:
+          port: 80
+          api_version: v1
+          interface_name: {{ conf['nfInterfaces']['sbi'] }}
+      nrf:
+        host: {{ conf['fqdn']['nrf'] }}
+        sbi:
+          port: 80
+          api_version: v1
+    ############## NF-specific configuration
+    udr:
+      udr_name: "OAI-UDR"
+    database:
+      host: {{ conf['database']['host'] }}
+      user: {{ conf['database']['user'] }}
+      type: {{ conf['database']['type'] }}
+      password: {{ conf['database']['pass'] }}
+      database_name: oai_db
+      generate_random: true
+      connection_timeout: {{ conf['database']['connection_timeout'] }} # seconds
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-udr-operator
+  namespace: oai-cn-operators
+  labels:
+    app.kubernetes.io/name: oai-udr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: oai-udr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: oai-udr
+    spec:
+      securityContext:
+        runAsGroup: 0
+        runAsUser: 0
+      containers:
+      - name: udr-operator
+        image: "docker.io/arorasagar/oai-udr-controller:v2.0.1"
+        imagePullPolicy: Always
+        env:
+          - name: 'NF_TYPE'
+            value: 'udr'
+          - name: 'DEPLOYMENT_FETCH_INTERVAL'
+            value: '1'
+          - name: 'DEPLOYMENT_FETCH_ITERATIONS'
+            value: '100'
+          - name: 'NF_CONF_PATH'
+            value: '/tmp/nf/udr.yaml'
+          - name: 'OP_CONF_PATH'
+            value: '/tmp/op/udr.yaml'
+          - name: 'TESTING'
+            value: 'no'
+          - name: 'SVC_TYPE'
+            value: 'LoadBalancer'
+          - name: 'KUBERNETES_BASE_URL'
+            value: 'https://kubernetes.default.svc'
+        volumeMounts:
+          - mountPath: /tmp/op
+            name: opconf
+          - mountPath: /tmp/nf
+            name: nfconf
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        # livenessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 8080
+        #   initialDelaySeconds: 2
+        #   periodSeconds: 5
+      volumes:
+      - configMap:
+          name: oai-udr-op-conf
+        name: opconf
+      - configMap:
+          name: oai-udr-nf-conf
+        name: nfconf
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccountName: oai-udr-operator
+      terminationGracePeriodSeconds: 5

@@ -1,0 +1,12 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: workload-cluster
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: this package is used to deploy workload cluster via FluxCD TF controller
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements.yaml  

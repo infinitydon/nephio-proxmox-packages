@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: configmap-api
+  name: cnf-ip-configmap-api
+  namespace: porch-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configmap-api
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: configmap-api
+    spec:
+      containers:
+      - image: ghcr.io/infinitydon/configmap-api:v0.1
+        imagePullPolicy: IfNotPresent
+        name: configmap-api
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/config
+          name: config-volume
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: network-config
+        name: config-volume

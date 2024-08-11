@@ -1,0 +1,35 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFConfig
+metadata:
+  name: oai-cuup-config
+  namespace: example
+spec:
+  configRefs:
+    - apiVersion: workload.nephio.org/v1alpha1
+      kind: RANConfig
+      metadata:
+        name: ranconfig
+      spec:
+        gNBID: 12
+        gNBName: oai-benetel
+        cuupID: 1
+    - apiVersion: workload.nephio.org/v1alpha1
+      kind: PLMN
+      metadata:
+        name: plmn
+      spec:
+        PLMNInfo:
+        - plmnID:
+            mcc: "208"
+            mnc: "99"
+          tac: 1
+          nssai:
+          - sd: ffffff
+            sst: 1
+    - apiVersion: workload.nephio.org/v1alpha1
+      kind: OAIConfig
+      metadata:
+        name: oai-nf-config
+        namespace: oai-ran-cuup
+      spec:
+        image: "docker.io/oaisoftwarealliance/oai-nr-cuup:2023.w19"            

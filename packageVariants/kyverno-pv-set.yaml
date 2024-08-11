@@ -1,0 +1,23 @@
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
+metadata:
+  name: kyverno
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: kyverno-package
+    revision: r3
+  targets:
+  - repositories:
+    - name: control-plane
+      packageNames:
+        - kyverno    
+    - name: user-plane
+      packageNames:
+        - kyverno    
+    - name: ran
+      packageNames:
+        - kyverno    
+    template:
+      annotations:
+        approval.nephio.org/policy: initial

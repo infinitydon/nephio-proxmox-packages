@@ -1,0 +1,40 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata:
+  name: upf-example
+  namespace: upf-example
+spec:
+  provider: upf.openairinterface.org
+  capacity:
+    maxDownlinkThroughput: 5G
+    maxUplinkThroughput: 5G
+  parametersRefs:
+  - name: oai-upf-config
+    apiVersion: workload.nephio.org/v1alpha1
+    kind: NFConfig
+  interfaces:
+  - name: n3
+    ipv4:
+      address: UPF_N3_IP
+      gateway: UPF_N3_GW
+    vlanID: 30
+  - name: n4
+    ipv4:
+      address: UPF_N4_IP
+      gateway: UPF_N4_GW
+    vlanID: 31
+  - name: n6
+    ipv4:
+      address: UPF_N6_IP
+      gateway: UPF_N6_GW
+    vlanID: 422
+  networkInstances:
+  - name: vpc-internal
+    interfaces:
+    - n4
+  - name: vpc-internet
+    interfaces:
+    - n6
+  - name: vpc-ran
+    interfaces:
+    - n3

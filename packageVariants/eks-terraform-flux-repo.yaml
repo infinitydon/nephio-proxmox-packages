@@ -1,0 +1,14 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: eks-terraform-flux-repo
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: eks-tf-repo-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: eks-tf-repo-package
+  annotations:
+    approval.nephio.org/policy: initial

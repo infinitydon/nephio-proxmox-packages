@@ -1,0 +1,23 @@
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
+metadata:
+  name: multus
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: multus-package
+    revision: r3
+  targets:
+  - repositories:
+    - name: control-plane
+      packageNames:
+        - multus    
+    - name: user-plane
+      packageNames:
+        - multus    
+    - name: ran
+      packageNames:
+        - multus    
+    template:
+      annotations:
+        approval.nephio.org/policy: initial

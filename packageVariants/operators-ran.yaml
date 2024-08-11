@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: oai-ran-operator
+spec:
+  upstream:
+    repo: nephio-aws-packages
+    package: oai-ran-operator-package
+    revision: r3
+  downstream:
+    repo: ran
+    package: oai-ran-operators
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: core
