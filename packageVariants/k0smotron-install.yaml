@@ -1,17 +1,14 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: core-oai-smf
+  name: k0smotron
 spec:
   upstream:
     repo: nephio-proxmox-packages
-    package: oai-smf-package
+    package: k0smotron-package
     revision: r3
   downstream:
-    repo: control-plane
-    package: oai-smf
+    repo: mgmt
+    package: k0smotron-package
   annotations:
     approval.nephio.org/policy: initial
-  injectors:
-  - name: core
-

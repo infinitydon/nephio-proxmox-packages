@@ -4,7 +4,7 @@ metadata:
   name: edge-oai-du
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: oai-du-package
     revision: r3
   downstream:

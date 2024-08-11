@@ -4,7 +4,7 @@ metadata:
   name: core-oai-ausf
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: oai-ausf-package
     revision: r3
   downstream:

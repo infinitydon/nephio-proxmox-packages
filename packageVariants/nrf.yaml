@@ -4,7 +4,7 @@ metadata:
   name: core-oai-nrf
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: oai-nrf-package
     revision: r3
   downstream:

@@ -4,7 +4,7 @@ metadata:
   name: regional-oai-cucp
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: oai-cucp-package
     revision: r3
   downstream:

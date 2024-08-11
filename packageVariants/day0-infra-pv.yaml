@@ -4,7 +4,7 @@ metadata:
   name: day0-infra
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: infra-day0-package
     revision: r3
   downstream:

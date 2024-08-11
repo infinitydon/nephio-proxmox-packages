@@ -4,7 +4,7 @@ metadata:
   name: edge-oai-cuup
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: oai-cuup-package
     revision: r3
   downstream:

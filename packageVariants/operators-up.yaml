@@ -4,7 +4,7 @@ metadata:
   name: oai-up-operators
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: oai-up-operators-package
     revision: r3
   downstream:

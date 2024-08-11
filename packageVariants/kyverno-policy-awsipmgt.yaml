@@ -4,7 +4,7 @@ metadata:
   name: kyverno-amf-awsipmgt-injection
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: kyverno-awsipmgt-core-package
     revision: r3
   downstream:
@@ -33,7 +33,7 @@ metadata:
   name: kyverno-smf-awsipmgt-injection
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: kyverno-awsipmgt-core-package
     revision: r3
   downstream:
@@ -62,7 +62,7 @@ metadata:
   name: kyverno-upf-awsipmgt-injection
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: kyverno-awsipmgt-core-package
     revision: r3
   downstream:
@@ -91,7 +91,7 @@ metadata:
   name: kyverno-cucp-awsipmgt-injection
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: kyverno-awsipmgt-ran-package
     revision: r3
   downstream:
@@ -120,7 +120,7 @@ metadata:
   name: kyverno-cuup-awsipmgt-injection
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: kyverno-awsipmgt-ran-package
     revision: r3
   downstream:
@@ -149,7 +149,7 @@ metadata:
   name: kyverno-du-awsipmgt-injection
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: kyverno-awsipmgt-ran-package
     revision: r3
   downstream:

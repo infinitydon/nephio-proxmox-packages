@@ -4,7 +4,7 @@ metadata:
   name: core-oai-database
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: database-package
     revision: r3
   downstream:

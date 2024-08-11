@@ -4,7 +4,7 @@ metadata:
   name: ran-eks-cluster
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: workload-cluster-package
     revision: r3
   downstream:
@@ -69,7 +69,7 @@ metadata:
   name: controlplane-eks-cluster
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: workload-cluster-package
     revision: r3
   downstream:
@@ -134,7 +134,7 @@ metadata:
   name: userplane-eks-cluster
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: workload-cluster-package
     revision: r3
   downstream:

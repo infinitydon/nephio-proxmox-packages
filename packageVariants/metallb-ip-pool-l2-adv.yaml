@@ -1,17 +1,14 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: core-oai-smf
+  name: metallb-ip-pool-l2-adv
 spec:
   upstream:
     repo: nephio-proxmox-packages
-    package: oai-smf-package
+    package: metallb-ip-pool-adv-package
     revision: r3
   downstream:
-    repo: control-plane
-    package: oai-smf
+    repo: mgmt
+    package: metallb-ip-pool-l2-adv
   annotations:
     approval.nephio.org/policy: initial
-  injectors:
-  - name: core
-

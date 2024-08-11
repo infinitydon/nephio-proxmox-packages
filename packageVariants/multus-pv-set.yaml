@@ -4,7 +4,7 @@ metadata:
   name: multus
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: multus-package
     revision: r3
   targets:

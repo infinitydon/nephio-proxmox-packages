@@ -4,7 +4,7 @@ metadata:
   name: cnf-ip-mgmt-api
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: configuration-ip-api-package
     revision: r3
   downstream:

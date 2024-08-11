@@ -4,7 +4,7 @@ metadata:
   name: edge-oai-upf
 spec:
   upstream:
-    repo: nephio-aws-packages
+    repo: nephio-proxmox-packages
     package: oai-upf-edge-package
     revision: r3
   downstream:
