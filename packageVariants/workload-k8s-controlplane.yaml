@@ -17,6 +17,7 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3-k0s.0
+        k0s-cluster-ns: edge
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
       - kind: Cluster
@@ -43,6 +44,7 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3-k0s.0
+        k0s-cluster-ns: core
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
       - kind: Cluster
@@ -69,6 +71,7 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3-k0s.0
+        k0s-cluster-ns: regional
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
       - kind: Cluster
