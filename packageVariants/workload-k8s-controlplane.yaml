@@ -1,20 +1,71 @@
-apiVersion: config.porch.kpt.dev/v1alpha2
-kind: PackageVariantSet
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
 metadata:
-  name: k0smotrom-controlplane-clusters
+  name: edge-k8s-ctrl
 spec:
   upstream:
     repo: nephio-proxmox-packages
     package: hosted-k8s-k0smotron-package
     revision: r3
-  targets:
-  - repositories:
-    - name: mgmt
-      packageNames:
-        - edge-k8s-ctrl    
-    - name: mgmt
-      packageNames:
-        - core-k8s-ctrl
-    - name: mgmt
-      packageNames:
-        - regional-k8s-ctrl
+  downstream:
+    repo: mgmt
+    package: edge-k8s-ctrl
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configMap:
+        k0s-release-version: v1.30.3+k0s.0
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: Cluster
+      configMap:
+        by-value: example
+        put-value: edge-k8s
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-k8s-ctrl
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: hosted-k8s-k0smotron-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: core-k8s-ctrl
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configMap:
+        k0s-release-version: v1.30.3+k0s.0
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: Cluster
+      configMap:
+        by-value: example
+        put-value: core-k8s
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: regional-k8s-ctrl
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: hosted-k8s-k0smotron-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: regional-k8s-ctrl
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configMap:
+        k0s-release-version: v1.30.3+k0s.0
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: Cluster
+      configMap:
+        by-value: example
+        put-value: regional-k8s
