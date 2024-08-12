@@ -1,0 +1,32 @@
+apiVersion: k0smotron.io/v1beta1
+kind: JoinTokenRequest
+metadata:
+  name: edge-token
+  namespace: k0smotron
+spec:
+  clusterRef:
+    name: edge-k8s-ctrl
+    namespace: edge
+  expiry: 1h
+---
+apiVersion: k0smotron.io/v1beta1
+kind: JoinTokenRequest
+metadata:
+  name: core-token
+  namespace: k0smotron
+spec:
+  clusterRef:
+    name: core-k8s-ctrl
+    namespace: core
+  expiry: 1h
+---
+apiVersion: k0smotron.io/v1beta1
+kind: JoinTokenRequest
+metadata:
+  name: regional-token
+  namespace: k0smotron
+spec:
+  clusterRef:
+    name: regional-k8s-ctrl
+    namespace: regional
+  expiry: 1h  
