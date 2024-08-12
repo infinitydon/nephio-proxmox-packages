@@ -18,6 +18,3 @@ spec:
     - name: mgmt
       packageNames:
         - regional-k8s-ctrl
-    template:
-      annotations:
-        approval.nephio.org/policy: initial
