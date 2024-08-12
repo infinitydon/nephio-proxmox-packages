@@ -17,8 +17,12 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
-  injectors:
-  - name: edge        
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: Cluster
+      configMap:
+        by-value: CLUSTER_NAME
+        put-value: edge-k8s-ctrl
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -39,8 +43,12 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
-  injectors:
-  - name: core
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: Cluster
+      configMap:
+        by-value: CLUSTER_NAME
+        put-value: core-k8s-ctrl
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -61,5 +69,9 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
-  injectors:
-  - name: regional        
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: Cluster
+      configMap:
+        by-value: CLUSTER_NAME
+        put-value: regional-k8s-ctrl
