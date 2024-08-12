@@ -2,6 +2,7 @@ apiVersion: k0smotron.io/v1beta1
 kind: Cluster
 metadata:
   name: example-cluster
+  namespace: k0smotron
 spec:
   k0sVersion: k0s_Release_Version # kpt-set: ${k0s-release-version}
   persistence:

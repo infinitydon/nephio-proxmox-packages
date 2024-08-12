@@ -1,0 +1,23 @@
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
+metadata:
+  name: k0smotrom-controlplane-clusters
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: hosted-k8s-k0smotron-package
+    revision: r3
+  targets:
+  - repositories:
+    - name: mgmt
+      packageNames:
+        - edge-k8s-ctrl    
+    - name: mgmt
+      packageNames:
+        - core-k8s-ctrl
+    - name: mgmt
+      packageNames:
+        - regional-k8s-ctrl
+    template:
+      annotations:
+        approval.nephio.org/policy: initial
