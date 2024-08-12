@@ -4,7 +4,7 @@ metadata:
   name: CLUSTER_NAME
   namespace: k0smotron
 spec:
-  k0sVersion: k0s_Release_Version # kpt-set: ${k0s-release-version}
+  version: k0s_Release_Version # kpt-set: ${k0s-release-version}
   persistence:
     type: emptyDir
   service:
