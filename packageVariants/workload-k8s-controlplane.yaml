@@ -17,6 +17,8 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
+  injectors:
+  - name: edge        
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -37,6 +39,8 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
+  injectors:
+  - name: core
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -57,3 +61,5 @@ spec:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
+  injectors:
+  - name: regional        
