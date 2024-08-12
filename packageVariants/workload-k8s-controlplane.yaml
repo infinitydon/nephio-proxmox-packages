@@ -10,17 +10,13 @@ spec:
   downstream:
     repo: mgmt
     package: edge-k8s-ctrl
+  annotations:
+    approval.nephio.org/policy: initial    
   pipeline:
     mutators:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
-    - image: gcr.io/kpt-fn/search-replace:v0.2.0
-      selectors:
-      - kind: Cluster
-      configMap:
-        by-value: example
-        put-value: edge-k8s
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -34,17 +30,13 @@ spec:
   downstream:
     repo: mgmt
     package: core-k8s-ctrl
+  annotations:
+    approval.nephio.org/policy: initial    
   pipeline:
     mutators:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
-    - image: gcr.io/kpt-fn/search-replace:v0.2.0
-      selectors:
-      - kind: Cluster
-      configMap:
-        by-value: example
-        put-value: core-k8s
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -58,14 +50,10 @@ spec:
   downstream:
     repo: mgmt
     package: regional-k8s-ctrl
+  annotations:
+    approval.nephio.org/policy: initial    
   pipeline:
     mutators:
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         k0s-release-version: v1.30.3+k0s.0
-    - image: gcr.io/kpt-fn/search-replace:v0.2.0
-      selectors:
-      - kind: Cluster
-      configMap:
-        by-value: example
-        put-value: regional-k8s
