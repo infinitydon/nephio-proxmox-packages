@@ -56,7 +56,7 @@ spec:
       - kind: Terraform
       configMap:
         by-value: NAME
-        put-value: edge-nodegroup    
+        put-value: core-nodegroup    
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         proxmox-api-url: "https://192.168.100.1:8006"
@@ -92,7 +92,7 @@ spec:
       - kind: Terraform
       configMap:
         by-value: NAME
-        put-value: edge-nodegroup    
+        put-value: regional-nodegroup    
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         proxmox-api-url: "https://192.168.100.1:8006"
