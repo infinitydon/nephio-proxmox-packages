@@ -7,7 +7,7 @@ spec:
   clusterRef:
     name: edge-k8s-ctrl
     namespace: edge
-  expiry: 1h
+  expiry: 24h
 ---
 apiVersion: k0smotron.io/v1beta1
 kind: JoinTokenRequest
@@ -18,7 +18,7 @@ spec:
   clusterRef:
     name: core-k8s-ctrl
     namespace: core
-  expiry: 1h
+  expiry: 24h
 ---
 apiVersion: k0smotron.io/v1beta1
 kind: JoinTokenRequest
@@ -29,4 +29,4 @@ spec:
   clusterRef:
     name: regional-k8s-ctrl
     namespace: regional
-  expiry: 1h  
+  expiry: 24h  
