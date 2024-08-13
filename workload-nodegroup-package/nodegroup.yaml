@@ -1,0 +1,43 @@
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: example-nodegroup
+  namespace: flux-system
+spec:
+  interval: 5m
+  approvePlan: auto
+  destroyResourcesOnDeletion: true
+  storeReadablePlan: human
+  path: ./proxmox-workload-nodegroups
+  sourceRef:
+    kind: GitRepository
+    name: proxmox-infra-tf-repo
+    namespace: flux-system
+  vars:
+  - name: proxmox_api_url
+    value: PROXMOX_API_URL # kpt-set: ${proxmox-api-url}
+  - name: proxmox_host_node
+    value: PROXMOX_HOST_NODE # kpt-set: ${proxmox-host-node}
+  - name: ssh_public_key
+    value: SSH_PUBLIC_KEY # kpt-set: ${ssh-public-key}
+  - name: vm_name
+    value: VM_NAME # kpt-set: ${vm-name}
+  - name: vm_identifier
+    value: VM_ID # kpt-set: ${vm-id}
+  - name: os_template_id
+    value: OS_TEMPLATE_ID # kpt-set: ${os-template-id}
+  - name: workload_join_token_secret_name
+    value: WORKLOAD_JOIN_TOKEN_SECRET_NAME # kpt-set: ${workload-join-token-secret-name}
+  - name: workload_kubeconfig_secret_name
+    value: WORKLOAD_KUBECONFIG_SECRET_NAME # kpt-set: ${workload-kubeconfig-secret-name}
+  - name: workload_kubeconfig_ns
+    value: WORKLOAD_KUBECONFIG_NS # kpt-set: ${workload-kubeconfig-ns}
+  - name: github_repository
+    value: GITHUB_REPOSITORY # kpt-set: ${github-repo}
+  - name: github_org
+    value: GITHUB_ORG # kpt-set: ${github-org}
+  varsFrom:
+  - kind: Secret
+    name: proxmox-creds
+  writeOutputsToSecret:
+    name: example-outputs

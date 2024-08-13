@@ -1,0 +1,143 @@
+# Role for flux-system namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tf-runner-secret-reader
+  namespace: flux-system
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+  resourceNames:
+  - prox-telco-edge-5g-gh-key
+  - prox-telco-core-5g-gh-key
+  - prox-telco-regional-5g-gh-key
+---
+# Role for k0smotron namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tf-runner-secret-reader
+  namespace: k0smotron
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+  resourceNames:
+  - core-token
+  - edge-token
+  - regional-token
+---
+# Role for edge namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tf-runner-secret-reader
+  namespace: edge
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+  resourceNames:
+  - edge-k8s-ctrl-kubeconfig
+---
+# Role for core namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tf-runner-secret-reader
+  namespace: core
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+  resourceNames:
+  - core-k8s-ctrl-kubeconfig
+---
+# Role for regional namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: tf-runner-secret-reader
+  namespace: regional
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+  resourceNames:
+  - regional-k8s-ctrl-kubeconfig
+---
+# RoleBinding for flux-system namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tf-runner-secret-reader-binding
+  namespace: flux-system
+subjects:
+- kind: ServiceAccount
+  name: tf-runner
+  namespace: flux-system
+roleRef:
+  kind: Role
+  name: tf-runner-secret-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+# RoleBinding for k0smotron namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tf-runner-secret-reader-binding
+  namespace: k0smotron
+subjects:
+- kind: ServiceAccount
+  name: tf-runner
+  namespace: flux-system
+roleRef:
+  kind: Role
+  name: tf-runner-secret-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+# RoleBinding for edge namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tf-runner-secret-reader-binding
+  namespace: edge
+subjects:
+- kind: ServiceAccount
+  name: tf-runner
+  namespace: flux-system
+roleRef:
+  kind: Role
+  name: tf-runner-secret-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+# RoleBinding for core namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tf-runner-secret-reader-binding
+  namespace: core
+subjects:
+- kind: ServiceAccount
+  name: tf-runner
+  namespace: flux-system
+roleRef:
+  kind: Role
+  name: tf-runner-secret-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+# RoleBinding for regional namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tf-runner-secret-reader-binding
+  namespace: regional
+subjects:
+- kind: ServiceAccount
+  name: tf-runner
+  namespace: flux-system
+roleRef:
+  kind: Role
+  name: tf-runner-secret-reader
+  apiGroup: rbac.authorization.k8s.io

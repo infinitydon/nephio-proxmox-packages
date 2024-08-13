@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: proxmox-infra-tf-repo
+  namespace: flux-system
+spec:
+  interval: 30s
+  url: https://github.com/infinitydon/proxmox-infra-terraform/
+  ref:
+    branch: main

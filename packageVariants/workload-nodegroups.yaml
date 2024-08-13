@@ -1,0 +1,89 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: edge-nodegroup
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: workload-nodegroup-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: edge-nodegroup
+  annotations:
+    approval.nephio.org/policy: initial    
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configMap:
+        proxmox-api-url: "https://192.168.100.1:8006"
+        proxmox-host-node: pve
+        ssh-public-key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzFoEvSkACwz74tvyd5BDrLU5eRHFolzg5ZpN0fSihdjhEQAaI9oM/o/L1d8z7NwJWXjihuzdvTh7jEuRDtKpm3PBKK7YFSSkETBrnZkJvmoNXO4GdcGEVcfDkmZ9Cavefz63cbf2Qn7l2neQ2kiw2EEJLqUGz3unASp6ABhV3xT1TRQ59AyV/S3xvTAX+m7ePvnpQ9uy5/lsBSHtB1uD/CRr/aj2NwWDXnyffy+XSHzZUvxkNzwuZaRTNNHUqO4HPoJOrqbnU50ToosKy0axJm2l8+YH9/qgxFUnoPugzFySYIihXdXcc7tcD0iajcOGs4C8ywJVPI5ZHqmaeGX4T5AZsQm2I5IxycP0YCd+/0RHbuymqYtmu43gLqgmhvWi3DGBxbXEmTSWi8h5AVB5UR7KERLpxYQSSGvzkPASxI5fXWU+UpjyovwWwPdyt03mSa0LXYLu/9KhpjmFKfZt+1yYxhN0lThEt/k0kX0w7OG8zi4Sls0er3AYWgzdBq2k="
+        vm-name: prox-telco-edge-5g
+        vm-id: 10001
+        os-template-id: 9003
+        workload-join-token-secret-name: edge-token
+        workload-kubeconfig-secret-name: edge-k8s-ctrl-kubeconfig
+        workload-kubeconfig-ns: edge
+        github-repo: prox-telco-edge-5g
+        github-org: infinitydon
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-nodegroup
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: workload-nodegroup-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: core-nodegroup
+  annotations:
+    approval.nephio.org/policy: initial    
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configMap:
+        proxmox-api-url: "https://192.168.100.1:8006"
+        proxmox-host-node: pve
+        ssh-public-key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzFoEvSkACwz74tvyd5BDrLU5eRHFolzg5ZpN0fSihdjhEQAaI9oM/o/L1d8z7NwJWXjihuzdvTh7jEuRDtKpm3PBKK7YFSSkETBrnZkJvmoNXO4GdcGEVcfDkmZ9Cavefz63cbf2Qn7l2neQ2kiw2EEJLqUGz3unASp6ABhV3xT1TRQ59AyV/S3xvTAX+m7ePvnpQ9uy5/lsBSHtB1uD/CRr/aj2NwWDXnyffy+XSHzZUvxkNzwuZaRTNNHUqO4HPoJOrqbnU50ToosKy0axJm2l8+YH9/qgxFUnoPugzFySYIihXdXcc7tcD0iajcOGs4C8ywJVPI5ZHqmaeGX4T5AZsQm2I5IxycP0YCd+/0RHbuymqYtmu43gLqgmhvWi3DGBxbXEmTSWi8h5AVB5UR7KERLpxYQSSGvzkPASxI5fXWU+UpjyovwWwPdyt03mSa0LXYLu/9KhpjmFKfZt+1yYxhN0lThEt/k0kX0w7OG8zi4Sls0er3AYWgzdBq2k="
+        vm-name: prox-telco-core-5g
+        vm-id: 10002
+        os-template-id: 9003
+        workload-join-token-secret-name: core-token
+        workload-kubeconfig-secret-name: core-k8s-ctrl-kubeconfig
+        workload-kubeconfig-ns: core
+        github-repo: prox-telco-core-5g
+        github-org: infinitydon               
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: regional-nodegroup
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: workload-nodegroup-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: regional-nodegroup
+  annotations:
+    approval.nephio.org/policy: initial    
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configMap:
+        proxmox-api-url: "https://192.168.100.1:8006"
+        proxmox-host-node: pve
+        ssh-public-key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzFoEvSkACwz74tvyd5BDrLU5eRHFolzg5ZpN0fSihdjhEQAaI9oM/o/L1d8z7NwJWXjihuzdvTh7jEuRDtKpm3PBKK7YFSSkETBrnZkJvmoNXO4GdcGEVcfDkmZ9Cavefz63cbf2Qn7l2neQ2kiw2EEJLqUGz3unASp6ABhV3xT1TRQ59AyV/S3xvTAX+m7ePvnpQ9uy5/lsBSHtB1uD/CRr/aj2NwWDXnyffy+XSHzZUvxkNzwuZaRTNNHUqO4HPoJOrqbnU50ToosKy0axJm2l8+YH9/qgxFUnoPugzFySYIihXdXcc7tcD0iajcOGs4C8ywJVPI5ZHqmaeGX4T5AZsQm2I5IxycP0YCd+/0RHbuymqYtmu43gLqgmhvWi3DGBxbXEmTSWi8h5AVB5UR7KERLpxYQSSGvzkPASxI5fXWU+UpjyovwWwPdyt03mSa0LXYLu/9KhpjmFKfZt+1yYxhN0lThEt/k0kX0w7OG8zi4Sls0er3AYWgzdBq2k="
+        vm-name: prox-telco-regional-5g
+        vm-id: 10003
+        os-template-id: 9003
+        workload-join-token-secret-name: regional-token
+        workload-kubeconfig-secret-name: regional-k8s-ctrl-kubeconfig
+        workload-kubeconfig-ns: regional
+        github-repo: prox-telco-regional-5g
+        github-org: infinitydon
