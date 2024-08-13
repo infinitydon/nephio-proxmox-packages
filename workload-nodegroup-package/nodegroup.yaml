@@ -43,4 +43,4 @@ spec:
   - kind: Secret
     name: proxmox-creds
   writeOutputsToSecret:
-    name: NAME-outputs
+    name: NAME
