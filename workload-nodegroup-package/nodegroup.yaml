@@ -9,6 +9,9 @@ spec:
   destroyResourcesOnDeletion: true
   storeReadablePlan: human
   path: ./proxmox-workload-nodegroups
+  runnerPodTemplate:
+    spec:
+      image: ghcr.io/infinitydon/fluxcd-tf-controller-awscli:v0.16.0-rc.4  
   sourceRef:
     kind: GitRepository
     name: proxmox-infra-tf-repo
