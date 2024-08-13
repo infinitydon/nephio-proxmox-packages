@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: vlan-inotify-daemon
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: vlan-inotify-daemon
+  template:
+    metadata:
+      labels:
+        app: vlan-inotify-daemon
+    spec:
+      hostNetwork: true
+      containers:
+        - name: vlan-inotify-daemon
+          image: ghcr.io/infinitydon/host-vlan-configurator:v0.1.2
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+          securityContext:
+            privileged: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: vlan-config
+      nodeSelector:
+        kubernetes.io/os: linux
