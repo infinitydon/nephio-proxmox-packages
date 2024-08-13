@@ -1,7 +1,7 @@
 apiVersion: infra.contrib.fluxcd.io/v1alpha2
 kind: Terraform
 metadata:
-  name: example
+  name: NAME
   namespace: flux-system
 spec:
   interval: 5m
@@ -43,4 +43,4 @@ spec:
   - kind: Secret
     name: proxmox-creds
   writeOutputsToSecret:
-    name: example-outputs
+    name: NAME-outputs
