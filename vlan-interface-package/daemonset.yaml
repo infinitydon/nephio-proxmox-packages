@@ -15,7 +15,7 @@ spec:
       hostNetwork: true
       containers:
         - name: vlan-inotify-daemon
-          image: ghcr.io/infinitydon/host-vlan-configurator:v0.1.2
+          image: ghcr.io/infinitydon/host-vlan-configurator:v0.1.11
           volumeMounts:
             - name: config-volume
               mountPath: /etc/config
