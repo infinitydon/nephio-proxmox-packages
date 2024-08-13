@@ -13,7 +13,6 @@ replacements:
   - select:
       kind: Terraform
     fieldPaths:
-    - metadata.name
     - spec.writeOutputsToSecret.name
     options:
       delimiter: '-'
