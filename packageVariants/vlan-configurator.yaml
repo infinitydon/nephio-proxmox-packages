@@ -1,0 +1,87 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: edge-vlan-config
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: vlan-interface-package
+    revision: r3
+  downstream:
+    repo: edge
+    package: vlan-interface-package
+  annotations:
+    approval.nephio.org/policy: initial    
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: ConfigMap
+      configMap:
+        by-value: VLAN_PARAMS
+        put-value: |
+          configs:
+            - master: ens19
+              vlanIds:
+                - 101
+                - 102
+                - 103
+                - 104
+                - 105
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-vlan-config
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: vlan-interface-package
+    revision: r3
+  downstream:
+    repo: core
+    package: vlan-interface-package
+  annotations:
+    approval.nephio.org/policy: initial    
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: ConfigMap
+      configMap:
+        by-value: VLAN_PARAMS
+        put-value: |
+          configs:
+            - master: ens19
+              vlanIds:
+                - 106
+                - 107
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: regional-vlan-config
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: vlan-interface-package
+    revision: r3
+  downstream:
+    repo: regional
+    package: vlan-interface-package
+  annotations:
+    approval.nephio.org/policy: initial    
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: ConfigMap
+      configMap:
+        by-value: VLAN_PARAMS
+        put-value: |
+          configs:
+            - master: ens19
+              vlanIds:
+                - 108
+                - 109
+                - 110
