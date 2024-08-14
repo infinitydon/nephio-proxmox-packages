@@ -1,0 +1,14 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: certmanager
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: certmanager-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: certmanager-package
+  annotations:
+    approval.nephio.org/policy: initial

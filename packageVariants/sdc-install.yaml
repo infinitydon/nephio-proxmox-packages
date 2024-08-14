@@ -1,0 +1,14 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: sdc-install
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: sdc-router-automation-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: sdc-router-automation-package
+  annotations:
+    approval.nephio.org/policy: initial
