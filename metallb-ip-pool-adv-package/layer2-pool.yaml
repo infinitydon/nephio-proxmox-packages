@@ -3,3 +3,8 @@ kind: L2Advertisement
 metadata:
   name: k0smotron
   namespace: metallb-system
+spec:  
+  ipAddressPools:
+  - k0smotron-pool
+  interfaces:
+  - eth0  
