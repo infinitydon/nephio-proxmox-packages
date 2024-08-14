@@ -16,7 +16,7 @@ spec:
     mutators:
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
-      - kind: ConfigMap
+      - kind: FRRConfiguration
       configMap:
         by-value: FRR_SITE_ROUTER_CONFIG
         put-value: |-
