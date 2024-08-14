@@ -5,4 +5,4 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 info:
-  description: this package is used to deploy site routers
+  description: this package is used to metllab ipool and l2 advertisement
