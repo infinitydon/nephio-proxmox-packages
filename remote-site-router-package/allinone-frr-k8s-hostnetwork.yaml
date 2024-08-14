@@ -1281,6 +1281,8 @@ spec:
       initContainers:
       - name: vrf-vpp-int
         image: quay.io/frrouting/frr:9.1.0
+        securityContext:
+          privileged: true        
         command:
         - sh
         - -c
