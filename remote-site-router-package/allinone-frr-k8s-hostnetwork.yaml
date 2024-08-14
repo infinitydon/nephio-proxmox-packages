@@ -1280,7 +1280,7 @@ spec:
             hugepages-1Gi: 4Gi
       initContainers:
       - name: vrf-vpp-int
-        image: quay.io/frrouting/frr:9.1.0sybox
+        image: quay.io/frrouting/frr:9.1.0
         command:
         - sh
         - -c
