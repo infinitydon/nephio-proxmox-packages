@@ -1,0 +1,9 @@
+apiVersion: frrk8s.metallb.io/v1beta1
+kind: FRRConfiguration
+metadata:
+  name: site-router-config
+  namespace: frr-k8s-system
+spec:
+  raw:
+    priority: 5
+    rawConfig: FRR_SITE_ROUTER_CONFIG
