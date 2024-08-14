@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: frr-init-conf
   namespace: frr-k8s-system
-data: FRR_VPP_INT_CONFIG
+data:
+  frr-init.sh: FRR_VPP_INT_CONFIG
