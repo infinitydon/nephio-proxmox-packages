@@ -1165,7 +1165,7 @@ spec:
           name: frr-sockets
         - mountPath: /etc/frr
           name: frr-conf
-        - mountPath: /var/tmp/frr-init.sh
+        - mountPath: /var/tmp/
           name: frr-startup-config
       - args:
         - --metrics-port=7573
