@@ -72,108 +72,84 @@ metadata:
 spec:
   upstream:
     repo: nephio-proxmox-packages
-    package: remote-site-router-package
+    package: remote-site-router-config-package
     revision: r3
   downstream:
     repo: core
-    package: remote-site-router-package
+    package: remote-site-router-config-package
   annotations:
     approval.nephio.org/policy: initial    
   pipeline:
     mutators:
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
-      - kind: ConfigMap
+      - kind: FRRConfiguration
       configMap:
-        by-value: VPP_CFG
-        put-value: |
-           lcp lcp-sync on
-           lcp lcp-auto-subint on
-           ip table add 1
-           ip table add 2              
-           create sub-interfaces dpdk0 106
-           create sub-interfaces dpdk0 107
-           set interface ip table dpdk0.106 1
-           set interface ip table dpdk0.107 2
-           set interface state dpdk0 up
-           set interface state dpdk0.106 up
-           set interface state dpdk0.107 up
-           lcp create dpdk0 host-if dpdk0
-           lcp create dpdk0.106 host-if n2
-           lcp create dpdk0.107 host-if n4
-           set interface ip address dpdk0.106 192.168.55.1/24
-           set interface ip address dpdk0.107 192.168.56.1/24
-    - image: gcr.io/kpt-fn/search-replace:v0.2.0
-      selectors:
-      - kind: ConfigMap
-      configMap:
-        by-value: FRR_VPP_INT_CONFIG
-        put-value: |
-           sleep 20
-           ip link add dev n2vrf type vrf table 1
-           ip link add dev n4vrf type vrf table 2
-           ip link set dev n2vrf up
-           ip link set dev n4vrf up
-           ip link set dev n2 master n2vrf
-           ip link set dev n4 master n4vrf
+        by-value: FRR_SITE_ROUTER_CONFIG
+        put-value: |-
+          router bgp 65005 vrf n2vrf
+           no bgp ebgp-requires-policy
+           no bgp hard-administrative-reset
+           no bgp default ipv4-unicast
+           no bgp graceful-restart notification
+           bgp graceful-restart preserve-fw-state
+           no bgp network import-check
+           neighbor 192.168.55.3 remote-as 65005
+           !
+          router bgp 65006 vrf n4vrf
+           no bgp ebgp-requires-policy
+           no bgp hard-administrative-reset
+           no bgp default ipv4-unicast
+           no bgp graceful-restart notification
+           bgp graceful-restart preserve-fw-state
+           no bgp network import-check
+           neighbor 192.168.56.3 remote-as 65006
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: regional-site-router-config
+  name: regional-frr-router-config
 spec:
   upstream:
     repo: nephio-proxmox-packages
-    package: remote-site-router-package
+    package: remote-site-router-config-package
     revision: r3
   downstream:
     repo: regional
-    package: remote-site-router-package
+    package: remote-site-router-config-package
   annotations:
     approval.nephio.org/policy: initial    
   pipeline:
     mutators:
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
-      - kind: ConfigMap
+      - kind: FRRConfiguration
       configMap:
-        by-value: VPP_CFG
-        put-value: |
-           lcp lcp-sync on
-           lcp lcp-auto-subint on
-           ip table add 1
-           ip table add 2
-           ip table add 3              
-           create sub-interfaces dpdk0 108
-           create sub-interfaces dpdk0 109
-           create sub-interfaces dpdk0 110
-           set interface ip table dpdk0.108 1
-           set interface ip table dpdk0.109 2
-           set interface ip table dpdk0.110 3
-           set interface state dpdk0 up
-           set interface state dpdk0.108 up
-           set interface state dpdk0.109 up
-           set interface state dpdk0.110 up
-           lcp create dpdk0 host-if dpdk0
-           lcp create dpdk0.108 host-if e1
-           lcp create dpdk0.109 host-if f1
-           lcp create dpdk0.110 host-if n2
-           set interface ip address dpdk0.108 192.168.57.1/24
-           set interface ip address dpdk0.109 192.168.58.1/24
-           set interface ip address dpdk0.110 192.168.59.1/24
-    - image: gcr.io/kpt-fn/search-replace:v0.2.0
-      selectors:
-      - kind: ConfigMap
-      configMap:
-        by-value: FRR_VPP_INT_CONFIG
-        put-value: |
-           sleep 20
-           ip link add dev e1vrf type vrf table 1
-           ip link add dev f1vrf type vrf table 2
-           ip link add dev n2vrf type vrf table 3
-           ip link set dev e1vrf up
-           ip link set dev f1vrf up
-           ip link set dev n2vrf up
-           ip link set dev e1 master e1vrf
-           ip link set dev f1 master f1vrf
-           ip link set dev n2 master n2vrf
+        by-value: FRR_SITE_ROUTER_CONFIG
+        put-value: |-
+          router bgp 65007 vrf e1vrf
+           no bgp ebgp-requires-policy
+           no bgp hard-administrative-reset
+           no bgp default ipv4-unicast
+           no bgp graceful-restart notification
+           bgp graceful-restart preserve-fw-state
+           no bgp network import-check
+           neighbor 192.168.57.3 remote-as 65007
+           !
+          router bgp 65008 vrf f1vrf
+           no bgp ebgp-requires-policy
+           no bgp hard-administrative-reset
+           no bgp default ipv4-unicast
+           no bgp graceful-restart notification
+           bgp graceful-restart preserve-fw-state
+           no bgp network import-check
+           neighbor 192.168.58.3 remote-as 65008
+           !
+          router bgp 65009 vrf n2vrf
+           no bgp ebgp-requires-policy
+           no bgp hard-administrative-reset
+           no bgp default ipv4-unicast
+           no bgp graceful-restart notification
+           bgp graceful-restart preserve-fw-state
+           no bgp network import-check
+           neighbor 192.168.59.3 remote-as 65009
