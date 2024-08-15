@@ -16,7 +16,7 @@ spec:
   releaseName: openebs
   chart:
     spec:
-      chart: openebs-internal/openebs
+      chart: openebs
       sourceRef:
         kind: HelmRepository
         name: openebs
