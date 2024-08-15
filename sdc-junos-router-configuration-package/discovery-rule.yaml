@@ -1,0 +1,21 @@
+apiVersion: inv.sdcio.dev/v1alpha1
+kind: DiscoveryRule
+metadata:
+  name: dr-static
+  namespace: default
+spec:
+  period: 1m
+  concurrentScans: 2
+  defaultSchema:
+    provider: mx.juniper.sdcio.dev 
+    version: 23.2R1
+  addresses:
+  - address: 192.168.100.100
+    hostName: junos-central
+  targetConnectionProfiles:
+  - credentials: mx.juniper.sdcio.dev
+    connectionProfile: netconf
+    syncProfile: netconf-getconfig
+  targetTemplate:
+    labels:
+      sdcio.dev/region: us-east

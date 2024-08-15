@@ -1,0 +1,14 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: sdc-junos-config
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: sdc-junos-router-configuration-package
+    revision: r3
+  downstream:
+    repo: mgmt
+    package: sdc-junos-router-configuration-package
+  annotations:
+    approval.nephio.org/policy: initial
