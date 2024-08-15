@@ -1,8 +1,8 @@
 apiVersion: kpt.dev/v1
 kind: Kptfile
 metadata:
-  name: openebs
+  name: openebs-helm-release
   annotations:
     config.kubernetes.io/local-config: "true"
 info:
-  description: this package is used to create the EKS terraform FLuxcD GitRepo Resource
+  description: this package is used to create openEBS localstorage PVC
