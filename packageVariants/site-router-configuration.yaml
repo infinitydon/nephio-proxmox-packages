@@ -36,7 +36,7 @@ spec:
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.53.4 remote-as 65001
+           neighbor 192.168.53.3 remote-as 65001
            !
           router bgp 65005 vrf f1vrf
            no bgp ebgp-requires-policy
