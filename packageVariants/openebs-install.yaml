@@ -1,29 +1,14 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: core-openebs-helm-repo
+  name: core-openebs
 spec:
   upstream:
     repo: nephio-proxmox-packages
-    package: openebs-helm-repo-package
+    package: openebs-helm-package
     revision: r3
   downstream:
     repo: core
-    package: openebs-helm-repo-package
+    package: openebs-helm-package
   annotations:
-    approval.nephio.org/policy: initial
----
-apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariant
-metadata:
-  name: core-openebs-helm-release
-spec:
-  upstream:
-    repo: nephio-proxmox-packages
-    package: openebs-helm-release-package
-    revision: r3
-  downstream:
-    repo: core
-    package: openebs-helm-release-package
-  annotations:
-    approval.nephio.org/policy: initial    
+    approval.nephio.org/policy: initial 
