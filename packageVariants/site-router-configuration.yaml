@@ -20,50 +20,32 @@ spec:
       configMap:
         by-value: FRR_SITE_ROUTER_CONFIG
         put-value: |-
-          router bgp 65000 vrf n3vrf
+          router bgp 65004 vrf n4vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.50.3 remote-as 65000
+           neighbor 192.168.51.3 remote-as 65004
            !
-          router bgp 65001 vrf n4vrf
+          router bgp 65001 vrf e1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.51.3 remote-as 65001
+           neighbor 192.168.53.4 remote-as 65001
            !
-          router bgp 65002 vrf n6vrf
+          router bgp 65005 vrf f1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.52.3 remote-as 65002
-           !
-          router bgp 65003 vrf e1vrf
-           no bgp ebgp-requires-policy
-           no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
-           no bgp graceful-restart notification
-           bgp graceful-restart preserve-fw-state
-           no bgp network import-check
-           neighbor 192.168.53.4 remote-as 65003
-           !
-          router bgp 65004 vrf f1vrf
-           no bgp ebgp-requires-policy
-           no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
-           no bgp graceful-restart notification
-           bgp graceful-restart preserve-fw-state
-           no bgp network import-check
-           neighbor 192.168.54.4 remote-as 65004        
+           neighbor 192.168.54.4 remote-as 65005
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -87,23 +69,23 @@ spec:
       configMap:
         by-value: FRR_SITE_ROUTER_CONFIG
         put-value: |-
-          router bgp 65005 vrf n2vrf
+          router bgp 65002 vrf n2vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.55.3 remote-as 65005
+           neighbor 192.168.55.3 remote-as 65002
            !
-          router bgp 65006 vrf n4vrf
+          router bgp 65004 vrf n4vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.56.3 remote-as 65006
+           neighbor 192.168.56.3 remote-as 65004
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -127,29 +109,29 @@ spec:
       configMap:
         by-value: FRR_SITE_ROUTER_CONFIG
         put-value: |-
-          router bgp 65007 vrf e1vrf
+          router bgp 65001 vrf e1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.57.3 remote-as 65007
+           neighbor 192.168.57.3 remote-as 65001
            !
-          router bgp 65008 vrf f1vrf
+          router bgp 65005 vrf f1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.58.3 remote-as 65008
+           neighbor 192.168.58.3 remote-as 65005
            !
-          router bgp 65009 vrf n2vrf
+          router bgp 65002 vrf n2vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
            no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
-           neighbor 192.168.59.3 remote-as 65009
+           neighbor 192.168.59.3 remote-as 65002
