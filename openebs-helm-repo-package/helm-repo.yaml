@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   url: https://openebs.github.io/charts
-  interval: 1h
+  interval: 5m
