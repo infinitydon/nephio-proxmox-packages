@@ -1,7 +1,7 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: metallb-ip-pool-l2-adv
+  name: mgmt-metallb-ip-pool-l2-adv
 spec:
   upstream:
     repo: nephio-proxmox-packages
@@ -12,3 +12,34 @@ spec:
     package: metallb-ip-pool-l2-adv
   annotations:
     approval.nephio.org/policy: initial
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: IPAddressPool
+      configMap:
+        by-value: IP_ADDR_POOL
+        put-value: 10.0.1.240-10.0.1.245
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-metallb-ip-pool-l2-adv
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: metallb-ip-pool-adv-package
+    revision: r3
+  downstream:
+    repo: core
+    package: metallb-ip-pool-l2-adv
+  annotations:
+    approval.nephio.org/policy: initial
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/search-replace:v0.2.0
+      selectors:
+      - kind: IPAddressPool
+      configMap:
+        by-value: IP_ADDR_POOL
+        put-value: 10.0.1.245-10.0.1.248

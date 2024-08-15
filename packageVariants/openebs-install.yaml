@@ -1,0 +1,14 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-openebs
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: openebs-package
+    revision: r3
+  downstream:
+    repo: core
+    package: openebs-package
+  annotations:
+    approval.nephio.org/policy: initial    

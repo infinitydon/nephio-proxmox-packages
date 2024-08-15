@@ -1,7 +1,7 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: metallb
+  name: core-metallb
 spec:
   upstream:
     repo: nephio-proxmox-packages
@@ -12,3 +12,18 @@ spec:
     package: metallb-package
   annotations:
     approval.nephio.org/policy: initial
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: core-metallb
+spec:
+  upstream:
+    repo: nephio-proxmox-packages
+    package: metallb-package
+    revision: r3
+  downstream:
+    repo: core
+    package: metallb-package
+  annotations:
+    approval.nephio.org/policy: initial    
