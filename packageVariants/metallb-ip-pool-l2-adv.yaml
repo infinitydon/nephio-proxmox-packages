@@ -42,4 +42,4 @@ spec:
       - kind: IPAddressPool
       configMap:
         by-value: IP_ADDR_POOL
-        put-value: 10.0.1.245-10.0.1.248
+        put-value: 10.0.1.246-10.0.1.248
