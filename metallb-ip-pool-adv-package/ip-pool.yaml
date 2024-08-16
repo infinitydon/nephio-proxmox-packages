@@ -5,4 +5,4 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 10.0.1.240-10.0.1.245
+  - IP_ADDR_POOL
