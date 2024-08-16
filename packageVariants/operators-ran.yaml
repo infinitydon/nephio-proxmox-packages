@@ -1,5 +1,5 @@
-apiVersion: config.porch.kpt.dev/v1alpha1
-kind: PackageVariant
+apiVersion: config.porch.kpt.dev/v1alpha2
+kind: PackageVariantSet
 metadata:
   name: oai-ran-operator
 spec:
@@ -7,10 +7,14 @@ spec:
     repo: nephio-proxmox-packages
     package: oai-ran-operator-package
     revision: r3
-  downstream:
-    repo: ran
-    package: oai-ran-operators
-  annotations:
-    approval.nephio.org/policy: initial
-  injectors:
-  - name: core
+  targets:
+  - repositories:
+    - name: edge
+      packageNames:
+        - oai-ran-operator
+    - name: regional
+      packageNames:
+        - oai-ran-operator
+    template:
+      annotations:
+        approval.nephio.org/policy: initial  

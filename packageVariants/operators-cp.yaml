@@ -8,7 +8,7 @@ spec:
     package: oai-cp-operators-package
     revision: r3
   downstream:
-    repo: control-plane
+    repo: core
     package: oai-cp-operators
   annotations:
     approval.nephio.org/policy: initial

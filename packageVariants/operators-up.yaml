@@ -8,7 +8,7 @@ spec:
     package: oai-up-operators-package
     revision: r3
   downstream:
-    repo: user-plane
+    repo: edge
     package: oai-up-operators
   annotations:
     approval.nephio.org/policy: initial

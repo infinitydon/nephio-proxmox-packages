@@ -9,13 +9,13 @@ spec:
     revision: r3
   targets:
   - repositories:
-    - name: control-plane
+    - name: core
       packageNames:
         - workload-crds
-    - name: user-plane
+    - name: edge
       packageNames:
         - workload-crds
-    - name: ran
+    - name: regional
       packageNames:
         - workload-crds
     template:
