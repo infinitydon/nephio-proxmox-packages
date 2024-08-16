@@ -17,7 +17,8 @@ spec:
           "master": "DU_F1U_MULTUSPARENTINTERFACE",
           "mode": "bridge",
           "ipam": {
-            "type": "static"
+            "type": "static",
+            "routes": [{ "dst": "CUCP_F1C_NETWORKADDRESS", "gw": "DU_F1U_GW" }]
           }
         }
       ]
