@@ -8,7 +8,7 @@ spec:
     package: database-package
     revision: r3
   downstream:
-    repo: control-plane
+    repo: core
     package: database
   annotations:
     approval.nephio.org/policy: initial
