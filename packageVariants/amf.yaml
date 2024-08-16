@@ -8,7 +8,7 @@ spec:
     package: oai-amf-package
     revision: r3
   downstream:
-    repo: control-plane
+    repo: core
     package: oai-amf
   annotations:
     approval.nephio.org/policy: initial

@@ -8,7 +8,7 @@ spec:
     package: oai-smf-package
     revision: r3
   downstream:
-    repo: control-plane
+    repo: core
     package: oai-smf
   annotations:
     approval.nephio.org/policy: initial

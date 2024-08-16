@@ -8,7 +8,7 @@ spec:
     package: oai-nr-ue-package
     revision: r3
   downstream:
-    repo: ran
+    repo: edge
     package: oai-nr-ue
   annotations:
     approval.nephio.org/policy: initial

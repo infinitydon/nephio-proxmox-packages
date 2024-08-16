@@ -8,7 +8,7 @@ spec:
     package: oai-du-package
     revision: r3
   downstream:
-    repo: ran
+    repo: edge
     package: oai-du
   annotations:
     approval.nephio.org/policy: initial

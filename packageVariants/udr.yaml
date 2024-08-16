@@ -8,7 +8,7 @@ spec:
     package: oai-udr-package
     revision: r3
   downstream:
-    repo: control-plane
+    repo: core
     package: oai-udr
   annotations:
     approval.nephio.org/policy: initial
