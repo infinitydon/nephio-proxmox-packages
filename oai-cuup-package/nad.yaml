@@ -43,7 +43,8 @@ spec:
           "master": "CUUP_F1U_MULTUSPARENTINTERFACE",
           "mode": "bridge",
           "ipam": {
-            "type": "static"
+            "type": "static",
+            "routes": [{ "dst": "CUCP_F1C_NETWORKADDRESS", "gw": "CUUP_F1U_GW" }]
           }
         }
       ]
@@ -68,7 +69,8 @@ spec:
           "master": "CUUP_E1_MULTUSPARENTINTERFACE",
           "mode": "bridge",
           "ipam": {
-            "type": "static"
+            "type": "static",
+            "routes": [{ "dst": "CUCP_E1_NETWORKADDRESS", "gw": "CUUP_E1_GW" }]
           }
         }
       ]
