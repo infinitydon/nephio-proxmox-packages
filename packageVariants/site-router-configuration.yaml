@@ -23,7 +23,6 @@ spec:
           router bgp 65004 vrf n4vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
@@ -32,7 +31,6 @@ spec:
           router bgp 65001 vrf e1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
@@ -41,7 +39,6 @@ spec:
           router bgp 65005 vrf f1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
@@ -72,7 +69,6 @@ spec:
           router bgp 65002 vrf n2vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
@@ -81,7 +77,6 @@ spec:
           router bgp 65004 vrf n4vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
@@ -112,7 +107,6 @@ spec:
           router bgp 65001 vrf e1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
@@ -121,7 +115,6 @@ spec:
           router bgp 65005 vrf f1vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
@@ -130,7 +123,6 @@ spec:
           router bgp 65002 vrf n2vrf
            no bgp ebgp-requires-policy
            no bgp hard-administrative-reset
-           no bgp default ipv4-unicast
            no bgp graceful-restart notification
            bgp graceful-restart preserve-fw-state
            no bgp network import-check
