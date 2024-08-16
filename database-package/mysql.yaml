@@ -445,7 +445,7 @@ spec:
                 - sh
                 - -c
                 - "mysqladmin ping -u root -p${MYSQL_ROOT_PASSWORD}"
-            initialDelaySeconds: 180
+            initialDelaySeconds: 600
             periodSeconds: 15
             timeoutSeconds: 10
             successThreshold: 1
@@ -456,7 +456,7 @@ spec:
                 - sh
                 - -c
                 - "mysqladmin ping -u root -p${MYSQL_ROOT_PASSWORD}"
-            initialDelaySeconds: 180
+            initialDelaySeconds: 600
             periodSeconds: 15
             timeoutSeconds: 5
             successThreshold: 1
