@@ -10,12 +10,12 @@ spec:
       "name": "du-edge-f1",
       "plugins": [
         {
-          "type": "ipvlan",
+          "type": "macvlan",
           "capabilities": {
             "ips": true
           },
           "master": "DU_F1U_MULTUSPARENTINTERFACE",
-          "mode": "l2",
+          "mode": "bridge",
           "ipam": {
             "type": "static"
           }

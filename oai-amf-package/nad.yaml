@@ -26,12 +26,12 @@ spec:
       "name": "amf-core-n2",
       "plugins": [
         {
-          "type": "ipvlan",
+          "type": "macvlan",
           "capabilities": {
             "ips": true
           },
           "master": "AMF_N2_MULTUSPARENTINTERFACE",
-          "mode": "l2",
+          "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [{ "dst": "CUCP_N2_NETWORKADDRESS", "gw": "AMF_N2_GW" }]

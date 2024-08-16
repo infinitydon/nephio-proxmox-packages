@@ -10,12 +10,12 @@ spec:
       "name": "upf-core-n3",
       "plugins": [
         {
-          "type": "ipvlan",
+          "type": "macvlan",
           "capabilities": {
             "ips": true
           },
           "master": "UPF_N3_MULTUSPARENTINTERFACE",
-          "mode": "l2",
+          "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [{ "dst": "CUUP_N3_NETWORKADDRESS", "gw": "UPF_N3_GW" }]
@@ -36,12 +36,12 @@ spec:
       "name": "upf-core-n4",
       "plugins": [
         {
-          "type": "ipvlan",
+          "type": "macvlan",
           "capabilities": {
             "ips": true
           },
           "master": "UPF_N4_MULTUSPARENTINTERFACE",
-          "mode": "l2",
+          "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [{ "dst": "SMF_N4_NETWORKADDRESS", "gw": "UPF_N4_GW" }]
@@ -62,12 +62,12 @@ spec:
       "name": "upf-core-n6",
       "plugins": [
         {
-          "type": "ipvlan",
+          "type": "macvlan",
           "capabilities": {
             "ips": true
           },
           "master": "UPF_N6_MULTUSPARENTINTERFACE",
-          "mode": "l2",
+          "mode": "bridge",
           "ipam": {
             "type": "static"
           }
