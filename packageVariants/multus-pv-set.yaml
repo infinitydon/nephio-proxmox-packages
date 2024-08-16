@@ -9,13 +9,13 @@ spec:
     revision: r3
   targets:
   - repositories:
-    - name: control-plane
+    - name: core
       packageNames:
         - multus    
-    - name: user-plane
+    - name: edge
       packageNames:
         - multus    
-    - name: ran
+    - name: regional
       packageNames:
         - multus    
     template:
