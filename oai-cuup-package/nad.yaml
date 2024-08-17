@@ -17,8 +17,7 @@ spec:
           "master": "CUUP_N3_MULTUSPARENTINTERFACE",
           "mode": "bridge",
           "ipam": {
-            "type": "static",
-            "routes": [{ "dst": "UPF_N3_NETWORKADDRESS", "gw": "CUUP_N3_GW" }]
+            "type": "static"
           }
         }
       ]
