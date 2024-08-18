@@ -32,28 +32,43 @@ spec:
            create sub-interfaces dpdk0 103
            create sub-interfaces dpdk0 104
            create sub-interfaces dpdk0 105
+           create sub-interfaces dpdk0 200
+           create sub-interfaces dpdk0 201
+           create sub-interfaces dpdk0 202
            set interface ip table dpdk0.101 1
            set interface ip table dpdk0.102 2
+           set interface ip table dpdk0.200 2
            set interface ip table dpdk0.103 3
            set interface ip table dpdk0.104 4
+           set interface ip table dpdk0.201 4
            set interface ip table dpdk0.105 5
+           set interface ip table dpdk0.202 5
            set interface state dpdk0 up
            set interface state dpdk0.101 up
            set interface state dpdk0.102 up
            set interface state dpdk0.103 up
            set interface state dpdk0.104 up
            set interface state dpdk0.105 up
+           set interface state dpdk0.200 up
+           set interface state dpdk0.201 up
+           set interface state dpdk0.202 up
            lcp create dpdk0 host-if dpdk0
            lcp create dpdk0.101 host-if n3
            lcp create dpdk0.102 host-if n4
            lcp create dpdk0.103 host-if n6
            lcp create dpdk0.104 host-if e1
            lcp create dpdk0.105 host-if f1
+           lcp create dpdk0.200 host-if n4uplink
+           lcp create dpdk0.201 host-if e1uplink
+           lcp create dpdk0.202 host-if f1uplink
            set interface ip address dpdk0.101 192.168.50.1/24
            set interface ip address dpdk0.102 192.168.51.1/24
            set interface ip address dpdk0.103 192.168.52.1/24
            set interface ip address dpdk0.104 192.168.53.1/24
            set interface ip address dpdk0.105 192.168.54.1/24
+           set interface ip address dpdk0.200 192.168.60.1/30
+           set interface ip address dpdk0.201 192.168.60.5/30
+           set interface ip address dpdk0.202 192.168.60.9/30
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
       - kind: ConfigMap
@@ -73,9 +88,12 @@ spec:
            ip link set dev f1vrf up
            ip link set dev n3 master n3vrf
            ip link set dev n4 master n4vrf
+           ip link set dev n4uplink master n4vrf
            ip link set dev n6 master n6vrf
            ip link set dev e1 master e1vrf
+           ip link set dev e1uplink master e1vrf
            ip link set dev f1 master f1vrf
+           ip link set dev f1uplink master f1vrf
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -105,16 +123,26 @@ spec:
            ip table add 2              
            create sub-interfaces dpdk0 106
            create sub-interfaces dpdk0 107
+           create sub-interfaces dpdk0 203
+           create sub-interfaces dpdk0 204
            set interface ip table dpdk0.106 1
+           set interface ip table dpdk0.203 1
            set interface ip table dpdk0.107 2
+           set interface ip table dpdk0.204 2
            set interface state dpdk0 up
            set interface state dpdk0.106 up
            set interface state dpdk0.107 up
+           set interface state dpdk0.203 up
+           set interface state dpdk0.204 up
            lcp create dpdk0 host-if dpdk0
            lcp create dpdk0.106 host-if n2
+           lcp create dpdk0.203 host-if n2uplink
            lcp create dpdk0.107 host-if n4
+           lcp create dpdk0.204 host-if n4uplink
            set interface ip address dpdk0.106 192.168.55.1/24
            set interface ip address dpdk0.107 192.168.56.1/24
+           set interface ip address dpdk0.203 192.168.60.13/30
+           set interface ip address dpdk0.204 192.168.60.17/30
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
       - kind: ConfigMap
@@ -127,7 +155,9 @@ spec:
            ip link set dev n2vrf up
            ip link set dev n4vrf up
            ip link set dev n2 master n2vrf
+           ip link set dev n2uplink master n2vrf
            ip link set dev n4 master n4vrf
+           ip link set dev n4uplink master n4vrf
 ---
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
@@ -159,20 +189,35 @@ spec:
            create sub-interfaces dpdk0 108
            create sub-interfaces dpdk0 109
            create sub-interfaces dpdk0 110
+           create sub-interfaces dpdk0 205
+           create sub-interfaces dpdk0 206
+           create sub-interfaces dpdk0 207
            set interface ip table dpdk0.108 1
+           set interface ip table dpdk0.205 1
            set interface ip table dpdk0.109 2
+           set interface ip table dpdk0.206 2
            set interface ip table dpdk0.110 3
+           set interface ip table dpdk0.207 3
            set interface state dpdk0 up
            set interface state dpdk0.108 up
            set interface state dpdk0.109 up
            set interface state dpdk0.110 up
+           set interface state dpdk0.205 up
+           set interface state dpdk0.206 up
+           set interface state dpdk0.207 up
            lcp create dpdk0 host-if dpdk0
            lcp create dpdk0.108 host-if e1
+           lcp create dpdk0.205 host-if e1uplink
            lcp create dpdk0.109 host-if f1
+           lcp create dpdk0.206 host-if f1uplink
            lcp create dpdk0.110 host-if n2
+           lcp create dpdk0.207 host-if n2uplink
            set interface ip address dpdk0.108 192.168.57.1/24
            set interface ip address dpdk0.109 192.168.58.1/24
            set interface ip address dpdk0.110 192.168.59.1/24
+           set interface ip address dpdk0.205 192.168.60.21/30
+           set interface ip address dpdk0.206 192.168.60.25/30
+           set interface ip address dpdk0.207 192.168.60.29/30
     - image: gcr.io/kpt-fn/search-replace:v0.2.0
       selectors:
       - kind: ConfigMap
@@ -187,5 +232,8 @@ spec:
            ip link set dev f1vrf up
            ip link set dev n2vrf up
            ip link set dev e1 master e1vrf
+           ip link set dev e1uplink master e1vrf
            ip link set dev f1 master f1vrf
+           ip link set dev f1uplink master f1vrf
            ip link set dev n2 master n2vrf
+           ip link set dev n2uplink master n2vrf

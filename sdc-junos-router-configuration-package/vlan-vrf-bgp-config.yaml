@@ -14,74 +14,74 @@ spec:
       configuration:
         vlans:
           vlan:
-          - name: VLAN102
-            vlan-id: 102
-            l3-interface: irb.102
-          - name: VLAN104
-            vlan-id: 104
-            l3-interface: irb.104
-          - name: VLAN105
-            vlan-id: 105
-            l3-interface: irb.105
-          - name: VLAN106
-            vlan-id: 106
-            l3-interface: irb.106
-          - name: VLAN107
-            vlan-id: 107
-            l3-interface: irb.107
-          - name: VLAN108
-            vlan-id: 108
-            l3-interface: irb.108
-          - name: VLAN109
-            vlan-id: 109
-            l3-interface: irb.109
-          - name: VLAN110
-            vlan-id: 110
-            l3-interface: irb.110                                                                                    
+          - name: VLAN200
+            vlan-id: 200
+            l3-interface: irb.200
+          - name: VLAN201
+            vlan-id: 201
+            l3-interface: irb.201
+          - name: VLAN202
+            vlan-id: 202
+            l3-interface: irb.202
+          - name: VLAN203
+            vlan-id: 203
+            l3-interface: irb.203
+          - name: VLAN204
+            vlan-id: 204
+            l3-interface: irb.204
+          - name: VLAN205
+            vlan-id: 205
+            l3-interface: irb.205
+          - name: VLAN206
+            vlan-id: 206
+            l3-interface: irb.206
+          - name: VLAN207
+            vlan-id: 207
+            l3-interface: irb.207
         interfaces:
           interface:
           - name: irb
-            unit:
-            - name: "102"
+            unit:                    
+            - name: "200"
               family:
                 inet:
                   address:
-                  - name: "192.168.51.3/24"
-            - name: "104"
+                  - name: "192.168.60.2/30"
+            - name: "201"
               family:
                 inet:
                   address:
-                  - name: "192.168.53.3/24"
-            - name: "105"
+                  - name: "192.168.60.6/30"
+            - name: "202"
               family:
                 inet:
                   address:
-                  - name: "192.168.54.4/24"
-            - name: "106"
+                  - name: "192.168.60.10/30"
+            - name: "203"
               family:
                 inet:
                   address:
-                  - name: "192.168.55.3/24"
-            - name: "107"
+                  - name: "192.168.60.14/30"
+            - name: "204"
               family:
                 inet:
                   address:
-                  - name: "192.168.56.3/24"
-            - name: "108"
+                  - name: "192.168.60.18/30"
+            - name: "205"
               family:
                 inet:
                   address:
-                  - name: "192.168.57.3/24"
-            - name: "109"
+                  - name: "192.168.60.22/30"
+            - name: "206"
               family:
                 inet:
                   address:
-                  - name: "192.168.58.3/24"
-            - name: "110"
+                  - name: "192.168.60.26/30"
+            - name: "207"
               family:
                 inet:
                   address:
-                  - name: "192.168.59.3/24"                                                                                                                              
+                  - name: "192.168.60.30/30"
           - name: ge-0/0/1
             unit:
             - name: "0"
@@ -90,97 +90,81 @@ spec:
                  interface-mode: trunk
                  vlan:
                  - members:
-                   - VLAN102
-                   - VLAN104
-                   - VLAN105
-                   - VLAN106
-                   - VLAN107
-                   - VLAN108
-                   - VLAN109
-                   - VLAN110
+                   - VLAN200
+                   - VLAN201
+                   - VLAN202
+                   - VLAN203
+                   - VLAN204
+                   - VLAN205
+                   - VLAN206
+                   - VLAN207
         routing-instances:
           instance:
           - name: n2
-            instance-type: vrf
-            interface:
-            - name: irb.106
-            - name: irb.110
-            route-distinguisher:
-              rd-type: "100:1"
-            vrf-target: 
-              community: "target:100:1"            
+            instance-type: virtual-router
+            interface:          
+            - name: irb.203 
+            - name: irb.207
             protocols:
               bgp:
                 group:
-                - name: internal
-                  type: internal
+                - name: n2
+                  type: external
                   local-as:
                     as-number: 65002
                   neighbor:
-                  - name: 192.168.55.1
-                    peer-as: 65002
-                  - name: 192.168.59.1
-                    peer-as: 65002                    
+                  - name: 192.168.60.13
+                    peer-as: 65003
+                  - name: 192.168.60.29
+                    peer-as: 65004
           - name: n4
-            instance-type: vrf
+            instance-type: virtual-router
             interface:
-            - name: irb.102
-            - name: irb.107
-            route-distinguisher:
-              rd-type: "100:2"
-            vrf-target: 
-              community: "target:100:2"
+            - name: irb.200
+            - name: irb.204
             protocols:
               bgp:
                 group:
-                - name: internal
-                  type: internal
-                  local-as:
-                    as-number: 65004
-                  neighbor:
-                  - name: 192.168.51.1
-                    peer-as: 65004
-                  - name: 192.168.56.1
-                    peer-as: 65004
-          - name: e1
-            instance-type: vrf
-            interface:
-            - name: irb.104
-            - name: irb.108
-            route-distinguisher:
-              rd-type: "100:3"
-            vrf-target: 
-              community: "target:100:3"
-            protocols:
-              bgp:
-                group:
-                - name: internal
-                  type: internal
-                  local-as:
-                    as-number: 65001
-                  neighbor:
-                  - name: 192.168.53.1
-                    peer-as: 65001
-                  - name: 192.168.57.1
-                    peer-as: 65001                    
-          - name: f1
-            instance-type: vrf
-            interface:
-            - name: irb.105
-            - name: irb.109
-            route-distinguisher:
-              rd-type: "100:4"
-            vrf-target: 
-              community: "target:100:4"
-            protocols:
-              bgp:
-                group:
-                - name: internal
-                  type: internal
+                - name: n4
+                  type: external
                   local-as:
                     as-number: 65005
                   neighbor:
-                  - name: 192.168.54.1
-                    peer-as: 65005
-                  - name: 192.168.58.1
-                    peer-as: 65005                    
+                  - name: 192.168.60.1
+                    peer-as: 65006
+                  - name: 192.168.60.17
+                    peer-as: 65007
+          - name: e1
+            instance-type: virtual-router
+            interface:
+            - name: irb.201
+            - name: irb.205
+            protocols:
+              bgp:
+                group:
+                - name: e1
+                  type: external
+                  local-as:
+                    as-number: 65008
+                  neighbor:
+                  - name: 192.168.60.5
+                    peer-as: 65009
+                  - name: 192.168.60.21
+                    peer-as: 65010
+          - name: f1
+            instance-type: virtual-router
+            interface:
+            - name: irb.202
+            - name: irb.206
+            protocols:
+              bgp:
+                group:
+                - name: f1
+                  type: external
+                  local-as:
+                    as-number: 65011
+                  neighbor:
+                  - name: 192.168.60.9
+                    peer-as: 65012
+                  - name: 192.168.60.25
+                    peer-as: 65013
