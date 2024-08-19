@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Trunk Interface -->
+  <rect x="350" y="20" width="100" height="40" fill="#f0f0f0" stroke="#000" />
+  <text x="400" y="45" text-anchor="middle" font-size="12">Trunk ge-0/0/1</text>
+  
+  <!-- VLANs -->
+  <g transform="translate(0,100)">
+    <rect x="50" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="90" y="25" text-anchor="middle" font-size="10">VLAN200</text>
+    <rect x="150" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="190" y="25" text-anchor="middle" font-size="10">VLAN201</text>
+    <rect x="250" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="290" y="25" text-anchor="middle" font-size="10">VLAN202</text>
+    <rect x="350" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="390" y="25" text-anchor="middle" font-size="10">VLAN203</text>
+    <rect x="450" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="490" y="25" text-anchor="middle" font-size="10">VLAN204</text>
+    <rect x="550" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="590" y="25" text-anchor="middle" font-size="10">VLAN205</text>
+    <rect x="650" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="690" y="25" text-anchor="middle" font-size="10">VLAN206</text>
+    <rect x="750" y="0" width="80" height="40" fill="#e6f3ff" stroke="#000" />
+    <text x="790" y="25" text-anchor="middle" font-size="10">VLAN207</text>
+  </g>
+  
+  <!-- Routing Instances -->
+  <g transform="translate(0,250)">
+    <rect x="50" y="0" width="150" height="100" fill="#ffe6e6" stroke="#000" />
+    <text x="125" y="20" text-anchor="middle" font-size="12">Instance e1 (AS 65008)</text>
+    <text x="125" y="40" text-anchor="middle" font-size="10">IRB: 201, 205</text>
+    <text x="125" y="60" text-anchor="middle" font-size="10">Neighbors:</text>
+    <text x="125" y="75" text-anchor="middle" font-size="8">192.168.60.5 (AS 65009)</text>
+    <text x="125" y="90" text-anchor="middle" font-size="8">192.168.60.21 (AS 65010)</text>
+    
+    <rect x="250" y="0" width="150" height="100" fill="#e6ffe6" stroke="#000" />
+    <text x="325" y="20" text-anchor="middle" font-size="12">Instance f1 (AS 65011)</text>
+    <text x="325" y="40" text-anchor="middle" font-size="10">IRB: 202, 206</text>
+    <text x="325" y="60" text-anchor="middle" font-size="10">Neighbors:</text>
+    <text x="325" y="75" text-anchor="middle" font-size="8">192.168.60.9 (AS 65012)</text>
+    <text x="325" y="90" text-anchor="middle" font-size="8">192.168.60.25 (AS 65013)</text>
+    
+    <rect x="450" y="0" width="150" height="100" fill="#fff5e6" stroke="#000" />
+    <text x="525" y="20" text-anchor="middle" font-size="12">Instance n2 (AS 65002)</text>
+    <text x="525" y="40" text-anchor="middle" font-size="10">IRB: 203, 207</text>
+    <text x="525" y="60" text-anchor="middle" font-size="10">Neighbors:</text>
+    <text x="525" y="75" text-anchor="middle" font-size="8">192.168.60.29 (AS 65004)</text>
+    <text x="525" y="90" text-anchor="middle" font-size="8">192.168.60.13 (AS 65003)</text>
+    
+    <rect x="650" y="0" width="150" height="100" fill="#e6e6ff" stroke="#000" />
+    <text x="725" y="20" text-anchor="middle" font-size="12">Instance n4 (AS 65005)</text>
+    <text x="725" y="40" text-anchor="middle" font-size="10">IRB: 200, 204</text>
+    <text x="725" y="60" text-anchor="middle" font-size="10">Neighbors:</text>
+    <text x="725" y="75" text-anchor="middle" font-size="8">192.168.60.1 (AS 65006)</text>
+    <text x="725" y="90" text-anchor="middle" font-size="8">192.168.60.17 (AS 65007)</text>
+  </g>
+  
+  <!-- Connections -->
+  <line x1="400" y1="60" x2="400" y2="100" stroke="#000" stroke-width="2" />
+  <!-- Instance e1 connections -->
+  <line x1="190" y1="140" x2="125" y2="250" stroke="#ff0000" stroke-width="2" />
+  <line x1="590" y1="140" x2="125" y2="250" stroke="#ff0000" stroke-width="2" />
+  <!-- Instance f1 connections -->
+  <line x1="290" y1="140" x2="325" y2="250" stroke="#00ff00" stroke-width="2" />
+  <line x1="690" y1="140" x2="325" y2="250" stroke="#00ff00" stroke-width="2" />
+  <!-- Instance n2 connections -->
+  <line x1="390" y1="140" x2="525" y2="250" stroke="#ffa500" stroke-width="2" />
+  <line x1="790" y1="140" x2="525" y2="250" stroke="#ffa500" stroke-width="2" />
+  <!-- Instance n4 connections -->
+  <line x1="90" y1="140" x2="725" y2="250" stroke="#0000ff" stroke-width="2" />
+  <line x1="490" y1="140" x2="725" y2="250" stroke="#0000ff" stroke-width="2" />
+</svg>
